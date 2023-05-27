@@ -21,11 +21,16 @@ const Navbar = () => {
             priority
           />
         </div>
-        <ul className="mr-4">
+        <ul className="flex space-x-10 mr-4 text-gray-100 items-center">
+          <li>
+            <h2>Welcome, {session?.user?.name}!</h2>
+          </li>
           <li>
             <button
               onClick={() => signOut()}
-              className="cursor-pointer"
+              className="cursor-pointer border-gray-100
+              hover:border-4 rounded-full
+              transition-all duration-300 ease-in-out"
               aria-label="Logout"
               name="Logout"
               title="Logout"
