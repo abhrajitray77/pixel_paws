@@ -7,7 +7,4 @@ export const client = new Client()
 
 export const account = new Account(client);
 
-/* // Go to OAuth provider login page
-account.createOAuth2Session('discord');
- */
 
