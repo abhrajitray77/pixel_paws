@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-900 scroll-smooth;
+  }
   body {
     @apply bg-stone-950;
   }
