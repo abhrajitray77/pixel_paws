@@ -5,6 +5,8 @@ import Login from '@/components/Login'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]/route'
 import SessionProvider from '@/components/SessionProvider'
+import Sidebar from '@/components/Sidebar'
+import Navbar from '@/components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,14 +24,23 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider session={session}>
-        {!session ? (
-          <Login />
-        ): (
-          <div>
-              {children}
+      <SessionProvider session={session}>
+          {/* if there is no session */}
+          {!session ? (
+            <Login />
+          ): (
+        <div className="">
+          <Navbar />
+          <div className='border-r-[6px] rounded-full border-r-red-600 lg:max-w-[14rem] 
+          h-screen overflow-y-auto
+          md:max-w-[8rem]'>
+            {/* Sidebar */}
+            <Sidebar />
           </div>
-        )}
+
+        <div className="">{children}</div>
+        </div>
+          )}
         </SessionProvider>
         </body>
     </html>
