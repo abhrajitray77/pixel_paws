@@ -31,7 +31,7 @@ export default async function RootLayout({
           ): (
         <div className="">
           <Navbar />
-          <div className='border-r-[6px] rounded-full border-r-red-600 lg:max-w-[14rem] 
+          <div className='border-r-[6px] border-r-red-600 lg:max-w-[14rem] 
           h-screen overflow-y-auto
           md:max-w-[8rem]'>
             {/* Sidebar */}
