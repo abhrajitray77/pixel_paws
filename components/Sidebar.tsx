@@ -11,17 +11,17 @@ const Sidebar = () => {
             </SideButton>
         </div>
         <div className=''>
-            <SideButton name="Wishlist" path="/MyLib">
+            <SideButton name="Wishlist" path="/Wish">
                 <GiftIcon className="w-6 h-6" />
             </SideButton>
         </div>
         <div className=''>
-            <SideButton name="New Releases" path="/MyLib">
+            <SideButton name="New Releases" path="/New">
                 <SparklesIcon className="w-6 h-6" />
             </SideButton>
         </div>
         <div className=''>
-            <SideButton name="Most Popular" path="/MyLib">
+            <SideButton name="Most Popular" path="/Pop">
                 <FireIcon className="w-6 h-6" />
             </SideButton>
         </div>

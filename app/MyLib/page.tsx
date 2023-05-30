@@ -2,7 +2,7 @@ import React from 'react'
 
 const MyLib = () => {
   return (
-    <div>MyLib</div>
+    <div className='text-white'>MyLib</div>
   )
 }
 

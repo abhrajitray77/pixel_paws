@@ -32,14 +32,16 @@ export default async function RootLayout({
           ): (
         <div className="">
           <Navbar />
-          <div className='border-r-[6px] border-r-red-600 lg:max-w-[14rem] 
-          h-screen overflow-y-auto
-          md:max-w-[8rem]'>
-            {/* Sidebar */}
-            <Sidebar />
-          </div>
+          <div className='flex'>
+            <div className='border-r-[6px] border-r-red-600 lg:max-w-[14rem] 
+            h-screen
+            md:max-w-[8rem]'>
+              {/* Sidebar */}
+              <Sidebar />
+            </div>
 
-        <div className="">{children}</div>
+            <div className="p-6 py-10">{children}</div>
+          </div>
         </div>
           )}
         </SessionProvider>

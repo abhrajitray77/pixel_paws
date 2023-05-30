@@ -11,7 +11,7 @@ type SideButtonProps = {
 const SideButton = ({ name, children, path }: SideButtonProps) => {
   return (
     <>
-      <Link href={path}>
+      <Link href={path} scroll={false}>
         <button
           className="text-cyan-600 hover:text-cyan-400 px-4 py-2
         flex space-x-4 transition-all duration-300 
