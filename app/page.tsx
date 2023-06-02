@@ -1,12 +1,27 @@
-import Login from '@/components/Login'
-import Navbar from '@/components/Navbar'
-import Image from 'next/image'
+import { useEffect, useState } from 'react';
+import GameCard from '@/components/GameCard';
+import getGameDetails from '@/rawg/gameDetails';
+import { Game } from '@/gameTypes';
 
 export default function Home() {
+  let gameDetails: Game;
+
+  getGameDetails('3498').then((data) => {
+    gameDetails = data;
+    console.log(gameDetails);
+  });
+
   return (
     <main className="text-white">
-     <h1>dfgdgfdfgdfg</h1>
-
+{/*       <div className="flex flex-wrap justify-center">
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <div>
+            got response
+          </div>
+        )}
+      </div> */}
     </main>
-  )
+  );
 }
