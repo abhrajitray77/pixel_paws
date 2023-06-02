@@ -33,14 +33,13 @@ export default async function RootLayout({
         <div className="">
           <Navbar />
           <div className='flex'>
-            <div className='border-r-[6px] border-r-red-600 lg:max-w-[14rem] 
-            h-screen
-            md:max-w-[8rem]'>
+            <div className='border-r-[6px] border-r-red-600 w-auto 
+            h-screen'>
               {/* Sidebar */}
               <Sidebar />
             </div>
 
-            <div className="p-6 py-10">{children}</div>
+            <div className="p-6 py-10 flex-1">{children}</div>
           </div>
         </div>
           )}
