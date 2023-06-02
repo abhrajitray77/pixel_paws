@@ -3,25 +3,19 @@ import GameCard from '@/components/GameCard';
 import getGameDetails from '@/rawg/gameDetails';
 import { Game } from '@/gameTypes';
 
-export default function Home() {
-  let gameDetails: Game;
+export default async function Home() {
+  let gameDetails = {} as Game;
 
-  getGameDetails('3498').then((data) => {
+  await getGameDetails('3498').then((data) => {
     gameDetails = data;
     console.log(gameDetails);
   });
 
   return (
     <main className="text-white">
-{/*       <div className="flex flex-wrap justify-center">
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <div>
-            got response
-          </div>
-        )}
-      </div> */}
+      <div>
+        <GameCard game={gameDetails} />
+      </div>
     </main>
   );
 }

@@ -21,7 +21,7 @@ const GameCard = ({ game }: GameCardProps) => {
 
   return (
     <div className="game-card">
-      <Image src={background_image} alt={name} />
+      <Image src={background_image} alt={name} width={400} height={250}/>
       <div className="game-card__info">
         <h3 className="game-card__title">{name}</h3>
         <p className="game-card__released">{releasedDate}</p>
