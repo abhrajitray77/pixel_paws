@@ -6,16 +6,7 @@ import { gameList } from "@/rawg/gameList";
 import getPrice from "@/rawg/getPrice";
 import { useEffect, useState } from "react";
 
-const loadGames = async () => {
-  const response = await gameList({ page_size: 50 });
-  let { results } = response;
-  results = results.filter((game) => game.ratings_count > 10);
-  results.forEach((game) => (game.price = getPrice(game)));
-  return results;
-};
-
 const minCardWidth = 300;
-let scrollY = 0;
 
 function Home() {
   const [games, setGames] = useState<Game[] | null>(null);
@@ -23,10 +14,13 @@ function Home() {
   const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
 
   useEffect(() => {
-    setColumnsCount(Math.floor(windowWidth / minCardWidth) || 1);
-  }, [windowWidth]);
-
-  useEffect(() => {
+    const loadGames = async () => {
+      const response = await gameList({ page_size: 50 });
+      let { results } = response;
+      results = results.filter((game) => game.ratings_count > 10);
+      results.forEach((game) => (game.price = getPrice(game)));
+      return results;
+    };
     (async () => {
       try {
         setGames(await loadGames());
@@ -35,6 +29,10 @@ function Home() {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    setColumnsCount(Math.floor(windowWidth / minCardWidth) || 1);
+  }, [windowWidth]);
 
   return (
     <div className="">

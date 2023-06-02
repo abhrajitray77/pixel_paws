@@ -21,10 +21,9 @@ interface Props {
     });
   
     return (
-      <div className="Grid">
-        <>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {columns.map((column, index) => (
-            <div key={`column-${index}`} className="Column">
+            <div key={`column-${index}`} className="space-y-6">
               {column.map((game) => (
                 <GameCard
                   key={game.id}
@@ -33,7 +32,6 @@ interface Props {
               ))}
             </div>
           ))}
-        </>
       </div>
     );
   }
