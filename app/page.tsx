@@ -8,7 +8,6 @@ export default async function Home() {
 
   await getGameDetails('3498').then((data) => {
     gameDetails = data;
-    console.log(gameDetails);
   });
 
   return (
