@@ -1,6 +1,6 @@
 const api = {
     url: "https://api.rawg.io/api/",
-    key: process.env.NEXT_PUBLIC_RAWG_API_KEY!,
+    key: process.env.RAWG_API_KEY!,
   };
   
   interface ResponseSchema<T> {

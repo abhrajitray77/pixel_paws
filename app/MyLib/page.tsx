@@ -6,7 +6,7 @@ const MyLib = () => {
 
   return (
     <div className='text-white'>
-
+      My library
     </div>
   )
 }

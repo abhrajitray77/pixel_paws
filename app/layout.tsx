@@ -25,26 +25,27 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <SessionProvider session={session}>
+        <SessionProvider session={session}>
           {/* if there is no session */}
           {!session ? (
             <Login />
-          ): (
-        <div className="">
-          <Navbar />
-          <div className='flex'>
-            <div className='border-r-[6px] border-r-red-600 w-auto 
-            h-screen'>
-              {/* Sidebar */}
-              <Sidebar />
-            </div>
+          ) : (
+            <div className="h-screen flex flex-col">
+              <Navbar />
+              <div className=" flex overflow-hidden">
+                <div className="border-r-[6px] border-r-red-600 w-auto">
+                  {/* Sidebar */}
+                  <Sidebar />
+                </div>
 
-            <div className="p-6 py-10 flex-1">{children}</div>
-          </div>
-        </div>
+                <div className="flex-1 p-6 py-10 w-auto overflow-y-scroll">
+                  <div className="max-h-full">{children}</div>
+                </div>
+              </div>
+            </div>
           )}
         </SessionProvider>
-        </body>
+      </body>
     </html>
   )
 }

@@ -4,15 +4,13 @@ import Grid from "@/components/Grid";
 import { Game } from "@/gameTypes";
 import { gameList } from "@/rawg/gameList";
 import getPrice from "@/rawg/getPrice";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 const minCardWidth = 300;
 
 function Home() {
   const [games, setGames] = useState<Game[] | null>(null);
-  const [columnsCount, setColumnsCount] = useState(1);
-  const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
-
   useEffect(() => {
     const loadGames = async () => {
       const response = await gameList({ page_size: 50 });
@@ -30,15 +28,12 @@ function Home() {
     })();
   }, []);
 
-  useEffect(() => {
-    setColumnsCount(Math.floor(windowWidth / minCardWidth) || 1);
-  }, [windowWidth]);
 
   return (
     <div className="">
       {games ? (
         games.length ? (
-          <Grid games={games} columnsCount={columnsCount} />
+          <Grid games={games}/>
         ) : (
           <span className="NoGames">No games found.</span>
         )
