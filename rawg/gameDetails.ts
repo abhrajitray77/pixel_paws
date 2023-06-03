@@ -1,4 +1,17 @@
-const getGameDetails = async (id: string) => {
+import { get } from './api';
+import { Game } from '@/gameTypes';
+
+interface Params {
+  id: number,
+}
+
+function gameDetails(params: Params): Promise<Game> {
+  return get<Game>(`games/${params.id}`);
+}
+
+export { gameDetails };
+
+/* const getGameDetails = async (id: string) => {
     try {
       const response = await fetch(
         `https://api.rawg.io/api/games/${id}?key=${process.env.RAWG_API_KEY}`
@@ -15,4 +28,4 @@ const getGameDetails = async (id: string) => {
   };
   
   export default getGameDetails;
-  
+   */
