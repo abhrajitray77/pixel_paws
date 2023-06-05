@@ -1,5 +1,6 @@
 import { Game } from "@/gameTypes";
 import Image from "next/image";
+import AddButton from "./AddButton";
 
 type GameCardProps = {
   game: Game;
@@ -17,6 +18,10 @@ const GameCard = ({ game }: GameCardProps) => {
     <div className="bg-[#180000] inline-block rounded-b-3xl ">
       <Image src={background_image} alt={name} width={400} height={250} />
       <div className="p-2">
+        <div className="flex justify-between ">
+          <AddButton collection="mylib" gameId={id} gameName={name} />
+          <AddButton collection="wishlist" gameId={id} gameName={name} />
+        </div>
         <div className="flex justify-between">
 {/*           <div className="text-sm font-medium text-gray-300">
             <p className="">{platformList}</p>

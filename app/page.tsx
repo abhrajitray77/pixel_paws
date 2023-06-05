@@ -1,12 +1,14 @@
-'use client'
+
 import { database, databaseId, userdataCol } from "@/utils/appwrite";
 import { Databases, ID, Query } from "appwrite";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
+
+/* export let userID: string; */
 
 function Home() {
-  const { data: session, status } = useSession<boolean>();
+/*   const { data: session, status } = useSession<boolean>();
   const usr: string  = session?.user?.name!;
   const emid: string = session?.user?.email!;
 
@@ -48,7 +50,11 @@ function Home() {
             );
           } else {
             // Username and email already exist, do something else
-            toast.success("Welcome back to GameNeko!");
+            console.log("Username and email already exist");
+            userID = response.documents[0].$id;
+            console.log(userID);
+            
+    
           }
         },
         function (error) {
@@ -57,7 +63,7 @@ function Home() {
         }
       );
     }
-  }, [session, usr, emid]);
+  }, [session, usr, emid]); */
 
   return <div className="text-white">DashBoard</div>;
 }
