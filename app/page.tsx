@@ -1,47 +1,71 @@
-"use client";
 
-import Grid from "@/components/Grid";
-import { Game } from "@/gameTypes";
-import { gameList } from "@/rawg/gameList";
-import getPrice from "@/rawg/getPrice";
+import { database, databaseId, userdataCol } from "@/utils/appwrite";
+import { Databases, ID, Query } from "appwrite";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { toast, Toaster } from "react-hot-toast";
 
-const minCardWidth = 300;
+/* export let userID: string; */
 
 function Home() {
-  const [games, setGames] = useState<Game[] | null>(null);
+/*   const { data: session, status } = useSession<boolean>();
+  const usr: string  = session?.user?.name!;
+  const emid: string = session?.user?.email!;
+
   useEffect(() => {
-    const loadGames = async () => {
-      const response = await gameList({ page_size: 50 });
-      let { results } = response;
-      results = results.filter((game) => game.ratings_count > 10);
-      results.forEach((game) => (game.price = getPrice(game)));
-      return results;
-    };
-    (async () => {
-      try {
-        setGames(await loadGames());
-      } catch (error) {
-        console.error("Error loading games:", error);
-      }
-    })();
-  }, []);
+    if (session) {
+      // Check if the username and email exist in the document
+      const searchPromise = database.listDocuments(
+        `${databaseId}`,
+        `${userdataCol}`,
+        [
+          Query.equal("username", usr),
+          Query.equal("email", emid),
+        ]
+      );
 
+      searchPromise.then(
+        function (response) {
+          if (response.documents.length === 0) {
+            // Username and email do not exist, create a new document
+            const createPromise = database.createDocument(
+              `${databaseId}`,
+              `${userdataCol}`,
+              ID.unique(),
+              {
+                username: usr,
+                email: emid,
+              }
+            );
 
-  return (
-    <div className="">
-      {games ? (
-        games.length ? (
-          <Grid games={games}/>
-        ) : (
-          <span className="NoGames">No games found.</span>
-        )
-      ) : (
-        <div>Loading...</div>
-      )}
-    </div>
-  );
+            createPromise.then(
+              function (response) {
+                console.log(response);
+                toast.success("Welcome to GameNeko!");
+              },
+              function (error) {
+                console.log(error);
+                toast.error("Something went wrong!");
+              }
+            );
+          } else {
+            // Username and email already exist, do something else
+            console.log("Username and email already exist");
+            userID = response.documents[0].$id;
+            console.log(userID);
+            
+    
+          }
+        },
+        function (error) {
+          console.log(error);
+          toast.error("Something went wrong!");
+        }
+      );
+    }
+  }, [session, usr, emid]); */
+
+  return <div className="text-white">DashBoard</div>;
 }
 
 export default Home;

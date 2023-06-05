@@ -1,5 +1,6 @@
 import { Game } from "@/gameTypes";
 import Image from "next/image";
+import AddButton from "./AddButton";
 
 type GameCardProps = {
   game: Game;
@@ -14,15 +15,19 @@ const GameCard = ({ game }: GameCardProps) => {
   const platformList = platforms.map((platform) => platform.platform.name).join(", ");
 
   return (
-    <div className="bg-[#180000] inline-block rounded-b-3xl ">
+    <div className="bg-[#180000] block rounded-b-3xl h-max  ">
       <Image src={background_image} alt={name} width={400} height={250} />
-      <div className="p-2">
+      <div className="p-2 py-4 space-y-2">
+        <div className="flex justify-between ">
+          <AddButton collection="mylib" gameId={id} gameName={name} />
+          <AddButton collection="wishlist" gameId={id} gameName={name} />
+        </div>
         <div className="flex justify-between">
 {/*           <div className="text-sm font-medium text-gray-300">
             <p className="">{platformList}</p>
           </div> */}
         </div>
-        <div className="text-sm font-medium text-gray-300">
+        <div className="text-sm font-medium text-gray-300 space-y-2">
           <h3 className="font-extrabold text-md">{name}</h3>
           <p className="">{releasedDate}</p>
           <p className="">{genreList}</p>
