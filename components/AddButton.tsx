@@ -1,9 +1,13 @@
-
 import { database, databaseId, mylibCol, wishlistCol } from "@/utils/appwrite";
-import { HeartIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
-import { ID } from "appwrite";
-import React from "react";
+import {
+  CheckCircleIcon,
+  HeartIcon,
+} from "@heroicons/react/24/solid";
+import { ID, Query } from "appwrite";
+import React, { useEffect, useState } from "react";
 import { userID } from "./SessionProvider";
+import { Toaster, toast } from "react-hot-toast";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
 type AddButtonProps = {
   collection: string;
@@ -12,62 +16,118 @@ type AddButtonProps = {
 };
 
 const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
+  //checking if game is present in wishlist and mylib
+  const [gamePresent, setGamePresent] = useState<boolean>(false);
+  const [gameAdded, setGameAdded] = useState<boolean>(false);
 
-    const addToCollection = () => {
+  useEffect(() => {
+    const checkGame = () => {
       if (collection === "mylib") {
-        const createPromise = database.createDocument(
+        const searchPromise = database.listDocuments(
           `${databaseId}`,
           `${mylibCol}`,
-          ID.unique(),
-          {
-            user_id: userID,
-            game_id: gameId,
-            game_name: gameName,
-          }
-        )
-        createPromise.then(
-          function (response) {
-            console.log(response);
-          },
-          function (error) {
-            console.log(error);
-          }
+          [Query.equal("user_id", userID), Query.equal("game_id", gameId)]
         );
-      }
-      else if (collection === "wishlist") {
-        const createPromise = database.createDocument(
+        searchPromise.then(function (response) {
+          if (response.documents.length === 0) {
+            setGamePresent(false);
+          } else {
+            setGamePresent(true);
+          }
+        });
+      } else if (collection === "wishlist") {
+        const searchPromise = database.listDocuments(
           `${databaseId}`,
           `${wishlistCol}`,
-          ID.unique(),
-          {
-            user_id: userID,
-            game_id: gameId,
-            game_name: gameName,
-          }
-        )
-        createPromise.then(
-          function (response) {
-            console.log(response);
-          },
-          function (error) {
-            console.log(error);
-          }
+          [Query.equal("user_id", userID), Query.equal("game_id", gameId)]
         );
+        searchPromise.then(function (response) {
+          if (response.documents.length === 0) {
+            setGamePresent(false);
+          } else {
+            setGamePresent(true);
+          }
+        });
       }
-  }
-    
-    
+    };
+    checkGame();
+  }, [collection, gameId, gameName, gameAdded]);
+
+  const addToCollection = () => {
+    if (collection === "mylib") {
+      const createPromise = database.createDocument(
+        `${databaseId}`,
+        `${mylibCol}`,
+        ID.unique(),
+        {
+          user_id: userID,
+          game_id: gameId,
+          game_name: gameName,
+        }
+      );
+      createPromise.then(
+        function (response) {
+          console.log(response);
+          toast.success("Added to Library!");
+          setGameAdded(true);
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
+    } else if (collection === "wishlist") {
+      const createPromise = database.createDocument(
+        `${databaseId}`,
+        `${wishlistCol}`,
+        ID.unique(),
+        {
+          user_id: userID,
+          game_id: gameId,
+          game_name: gameName,
+        }
+      );
+      createPromise.then(
+        function (response) {
+          console.log(response);
+          toast.success("Added to Wishlist!");
+          setGameAdded(true);
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
+    }
+  };
+
   return (
-    <button onClick={addToCollection}>
+    <div>
       {collection === "mylib" ? (
-        <div className="flex space-x-2 font-semibold text-gray-400">
-          <h3>Add to Library</h3>
-          <PlusCircleIcon className="h-6 w-6 text-white" />
-        </div>
-      ) : (
-        <HeartIcon className="h-6 w-6 text-white" />
-      )}
-    </button>
+        gamePresent ? (
+          <CheckCircleIcon className="h-6 w-6 text-green-500" />
+        ) : (
+          <div className="flex space-x-2 font-semibold justify-between">
+            <h3 className="text-gray-400">Add to Library</h3>
+            <PlusCircleIcon
+              className="h-6 w-6 text-green-500 cursor-pointer"
+              onClick={addToCollection}
+            />
+          </div>
+        )
+      ) : collection === "wishlist" ? (
+        gamePresent ? (
+          <HeartIcon className="h-6 w-6 text-red-500" />
+        ) : (
+          <div className="flex space-x-2 font-semibold justify-between">
+            <h3 className="text-gray-400">Add to Wishlist</h3>
+            <HeartIcon
+              className="h-6 w-6 text-gray-400 cursor-pointer"
+              onClick={addToCollection}
+            />
+          </div>
+        )
+      ) : null}
+      <Toaster />
+    </div>
   );
 };
 
