@@ -43,18 +43,20 @@ const MyLib = () => {
       searchPromise.then(function (response) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         gameIds = response.documents.map((game) => game.game_id);
-        console.log("first", gameIds);
-        
+        //getting game details for each game id
         gameDetailsPromises = gameIds.map((gameId) => gameDetails({id: gameId}));
-        console.log("second", gameDetailsPromises);
+        //setting games
         Promise.all(gameDetailsPromises).then((games) => { 
-          console.log("third", games);
           setGames(games);
         }
         );
       });
     };
-    getGameIds();
+    //TO-DO: temporary fix for reload userID undefined issue
+    setTimeout(() => {
+      getGameIds();
+    }
+    , 2000);
   }, []);
 
   return (
