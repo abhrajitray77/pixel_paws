@@ -6,7 +6,7 @@ interface Params {
 }
 
 function gameDetails(params: Params): Promise<Game> {
-  return get<Game>(`games/${params.id}`);
+  return get<Game>(`games/${params.id}?`);
 }
 
 export { gameDetails };
