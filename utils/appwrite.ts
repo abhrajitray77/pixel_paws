@@ -9,3 +9,4 @@ export const account = new Account(client);
 export const database = new Databases(client);
 
 export const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID;
+export const userdataCol = process.env.NEXT_PUBLIC_APPWRITE_USERDATA_COLLECTION;

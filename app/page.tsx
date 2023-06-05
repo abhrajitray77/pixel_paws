@@ -1,30 +1,55 @@
-"use client";
-
-import { database, databaseId } from "@/utils/appwrite";
-import { Databases, ID } from "appwrite";
+'use client'
+import { database, databaseId, userdataCol } from "@/utils/appwrite";
+import { Databases, ID, Query } from "appwrite";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 
 function Home() {
   const { data: session, status } = useSession<boolean>();
+  const usr: string  = session?.user?.name!;
+  const emid: string = session?.user?.email!;
 
   useEffect(() => {
     if (session) {
-      const promise = database.createDocument(
+      // Check if the username and email exist in the document
+      const searchPromise = database.listDocuments(
         `${databaseId}`,
-        "647bf4bab275c6bd9de0",
-        ID.unique(),
-        {
-          username: `${session?.user?.name!}`,
-          email: `${session?.user?.email!}`,
-        }
+        `${userdataCol}`,
+        [
+          Query.equal("username", usr),
+          Query.equal("email", emid),
+        ]
       );
 
-      promise.then(
+      searchPromise.then(
         function (response) {
-          console.log(response);
-          toast.success("Welcome to GameNeko!");
+          if (response.documents.length === 0) {
+            // Username and email do not exist, create a new document
+            const createPromise = database.createDocument(
+              `${databaseId}`,
+              `${userdataCol}`,
+              ID.unique(),
+              {
+                username: usr,
+                email: emid,
+              }
+            );
+
+            createPromise.then(
+              function (response) {
+                console.log(response);
+                toast.success("Welcome to GameNeko!");
+              },
+              function (error) {
+                console.log(error);
+                toast.error("Something went wrong!");
+              }
+            );
+          } else {
+            // Username and email already exist, do something else
+            toast.success("Welcome back to GameNeko!");
+          }
         },
         function (error) {
           console.log(error);
@@ -32,9 +57,9 @@ function Home() {
         }
       );
     }
-  }, [session]);
+  }, [session, usr, emid]);
 
-  return <div className="text-white"> DashBoard</div>;
+  return <div className="text-white">DashBoard</div>;
 }
 
 export default Home;
