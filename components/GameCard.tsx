@@ -15,7 +15,7 @@ const GameCard = ({ game }: GameCardProps) => {
   const platformList = platforms.map((platform) => platform.platform.name).join(", ");
 
   return (
-    <div className="bg-[#180000] block rounded-b-3xl h-max  ">
+    <div className="bg-[#180000] block rounded-b-3xl h-min  ">
       <Image src={background_image} alt={name} width={400} height={250} />
       <div className="p-2 py-4 space-y-2">
         <div className="flex justify-between ">

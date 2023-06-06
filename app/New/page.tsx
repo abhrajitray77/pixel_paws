@@ -12,9 +12,9 @@ const NewR = () => {
   //function to load games
   useEffect(() => {
     const loadGames = async () => {
-      const response = await gameList({ page_size: 50 });
+      const response = await gameList({ pageIndex: 1, page: 1, ordering: 'released' });
       let { results } = response;
-      results = results.filter((game) => game.ratings_count > 10);
+    //  results = results.filter((game) => game.ratings_count > 10);
       results.forEach((game) => (game.price = getPrice(game)));
       return results;
     };
