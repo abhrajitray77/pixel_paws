@@ -44,23 +44,24 @@ const MyLib = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         gameIds = response.documents.map((game) => game.game_id);
         //getting game details for each game id
-        gameDetailsPromises = gameIds.map((gameId) => gameDetails({id: gameId}));
-        //setting games
-        Promise.all(gameDetailsPromises).then((games) => { 
-          setGames(games);
-        }
+        gameDetailsPromises = gameIds.map((gameId) =>
+          gameDetails({ id: gameId })
         );
+        //setting games
+        Promise.all(gameDetailsPromises).then((games) => {
+          setGames(games);
+        });
       });
     };
     //TO-DO: temporary fix for reload userID undefined issue
     setTimeout(() => {
       getGameIds();
-    }
-    , 2000);
+    }, 1000);
   }, []);
 
   return (
-    <div className="">
+    <div className="space-y-4">
+      <h1 className="text-gray-300 font-extrabold text-3xl">My Library</h1>
       {games ? (
         games.length ? (
           <Grid games={games} />
