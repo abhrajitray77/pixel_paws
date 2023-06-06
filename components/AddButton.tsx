@@ -6,7 +6,7 @@ import {
 import { ID, Query } from "appwrite";
 import React, { useEffect, useState } from "react";
 import { userID } from "./SessionProvider";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
 type AddButtonProps = {
@@ -130,7 +130,6 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
           </div>
         )
       ) : null}
-      <Toaster />
     </div>
   );
 };
