@@ -7,6 +7,8 @@ import {
   WalletIcon,
 } from "@heroicons/react/24/outline";
 
+//TODO: add animated colour buttons on hover?
+
 const Sidebar = () => {
   return (
     <div className="flex flex-col h-screen py-10 px-5 space-y-2">
