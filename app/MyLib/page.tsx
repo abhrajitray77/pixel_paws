@@ -14,26 +14,13 @@ import React, { useEffect, useState } from "react";
 const MyLib = () => {
   const [games, setGames] = useState<Game[] | null>(null);
   const [loading, setLoading] = useState(true); //TO DO: add loading animation react spinner
-  let gameIds: number[] = [];
-  let gameDetailsPromises: Promise<Game>[];
+
 
   //function to load games
   useEffect(() => {
-    /*     const getGameIds = async () => {
-      try {
-        const response = await database.listDocuments(
-          `${databaseId}`,
-          `${mylibCol}`,
-          [Query.equal("user_id", userID)]
-        );
-        const gameIds: number[] = response.documents.map((game) => game.game_id);
-        console.log(gameIds);
-        return gameIds;
-      } catch (error) {
-        console.error("Error fetching game IDs:", error);
-        return [];
-      }
-    }; */
+    let gameIds: number[] = [];
+    let gameDetailsPromises: Promise<Game>[];
+
     const getGameIds = () => {
       const searchPromise = database.listDocuments(
         `${databaseId}`,

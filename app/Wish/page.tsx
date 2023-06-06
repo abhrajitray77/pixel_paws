@@ -10,12 +10,12 @@ import React, { useEffect, useState } from 'react'
 const Wish = () => {
   const [games, setGames] = useState<Game[] | null>(null);
   const [loading, setLoading] = useState(true); //TO DO: add loading animation react spinner
-  let gameIds: number[] = [];
-  let gameDetailsPromises: Promise<Game>[];
 
   //function to load games
   useEffect(() => {
-
+    let gameIds: number[] = [];
+    let gameDetailsPromises: Promise<Game>[];
+  
   const getGameIds = () => {
     const searchPromise = database.listDocuments(
       `${databaseId}`,
@@ -26,7 +26,6 @@ const Wish = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       gameIds = response.documents.map((game) => game.game_id);
       //getting game details for each game id
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       gameDetailsPromises = gameIds.map((gameId) => gameDetails({id: gameId}));
       //setting games
       Promise.all(gameDetailsPromises).then((games) => { 
