@@ -33,7 +33,7 @@ export default async function RootLayout({
             <div className="h-screen flex flex-col">
               <Navbar />
               <div className=" flex overflow-hidden">
-                <div className="border-r-[6px] border-r-red-600 w-auto">
+                <div className="border-r-[2px] my-4 border-r-red-600 w-auto">
                   {/* Sidebar */}
                   <Sidebar />
                 </div>
