@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import logo from "../public/imgs/nekored.webp";
 import { signOut, useSession } from "next-auth/react";
+import SeachBar from "./SeachBar";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
@@ -11,7 +12,7 @@ const Navbar = () => {
   return (
     <nav className="flex flex-col space-y-1/2 bg-black">
       <div className="flex justify-between items-center">
-        <div className="p-2 pl-0 w-20">
+        <div className="p-2 pl-0 w-20 flex items-center space-x-2">
           <Image
             className="rounded-e-full"
             src={logo}
@@ -20,10 +21,16 @@ const Navbar = () => {
             height={100}
             priority
           />
+          <div className="hidden md:block">
+          <SeachBar />
+          </div>
         </div>
+
         <ul className="flex space-x-10 mr-4 text-gray-100 items-center">
-          <li>
-            <h2 className="font-semibold text-xl">Welcome, {session?.user?.name}!</h2>
+          <li className="hidden md:block">
+            <h2 className="font-semibold text-xl">
+              Welcome, {session?.user?.name}!
+            </h2>
           </li>
           <li>
             <button
