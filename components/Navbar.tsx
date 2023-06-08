@@ -1,19 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../public/imgs/nekored.webp";
 import { signOut, useSession } from "next-auth/react";
 import SeachBar from "./SeachBar";
+import { SidebarContext } from "@/utils/SidebarContext";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
+  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+
+  const handleLogoClick = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <nav className="flex flex-col space-y-1/2 bg-black">
       <div className="flex justify-between items-center">
         <div className="p-2 pl-0 w-20 flex items-center space-x-2">
           <Image
+            onClick={handleLogoClick}
             className="rounded-e-full"
             src={logo}
             alt="Logo"
