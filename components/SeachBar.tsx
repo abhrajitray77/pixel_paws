@@ -3,7 +3,7 @@ import { Game } from "@/gameTypes";
 import { Search } from "@/rawg/search";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import placeholderImg from "../public/imgs/imgPlaceholder.jpg"
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -11,9 +11,10 @@ import { useRouter } from "next/navigation";
 
 const SeachBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  //const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [searchedGames, setSearchedGames] = useState<Game[] | null>(null);
   const router = useRouter();
+  const searchRef = useRef<HTMLFormElement | null>(null);
 
   //function to search games
   useEffect(() => {
@@ -32,10 +33,32 @@ const SeachBar = () => {
     })();
   }, [searchTerm]);
 
+  const keyboardCloseHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Escape") {
+      setSearchTerm("");
+    }
+  };
+  //Handling outside clicks
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
+
 
   return (
     <div className="min-w-min relative">
       <form
+        ref={searchRef}
+        onFocus={() => setIsSearchOpen(true)}
         className="flex bg-slate-900 p-2 px-4
         rounded-lg space-x-4"
         autoComplete="off"
@@ -51,6 +74,7 @@ const SeachBar = () => {
             focus:outline-none "
           id="search"
           value={searchTerm}
+          onKeyDown={keyboardCloseHandler}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setSearchTerm(e.target.value);
           }}
@@ -59,7 +83,7 @@ const SeachBar = () => {
           name="search"
         />
       </form>
-      {searchedGames && searchTerm ? (
+      {searchedGames && searchTerm && isSearchOpen ? (
         <>
           {searchedGames.length ? (
             <div className="absolute bg-slate-800/70
@@ -67,7 +91,7 @@ const SeachBar = () => {
              scrollbar-thumb-gray-700 backdrop-blur-lg">
               {searchedGames.map((game) => (
                 <div key={game.slug}
-                onClick={() => router.push(`/Game/${game.slug}`)}
+                onClick={() => router.push(`/game/${game.slug}`)}
                 className="flex items-center space-x-4 hover:bg-slate-900/60
                 transition duration-300 cursor-pointer p-4">
                   {game.background_image && (

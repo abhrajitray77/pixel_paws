@@ -33,8 +33,8 @@ const GamePage = ({ params: {slug} }: GamePageProps) => {
           <Image
             src={game.background_image}
             alt={game.name}
-            height={400}
-            width={200}
+            height={600}
+            width={800}
           />
           <p className="text-gray-300">{game.description_raw}</p>
         </div>
