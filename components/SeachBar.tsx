@@ -14,14 +14,13 @@ const SeachBar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [searchedGames, setSearchedGames] = useState<Game[] | null>(null);
   const router = useRouter();
-  const searchRef = useRef<HTMLFormElement | null>(null);
+  const searchRef = useRef<HTMLDivElement | null>(null);
 
   //function to search games
   useEffect(() => {
     const getSearchedGame = async (searchTerm: string) => {
       const response = await Search({ term: searchTerm });
       let { results } = response;
-      console.log(results);
       return results;
     };
     (async () => {
@@ -55,9 +54,10 @@ const SeachBar = () => {
 
 
   return (
-    <div className="min-w-min relative">
+    <div className="min-w-min relative"
+    ref={searchRef}
+    >
       <form
-        ref={searchRef}
         onFocus={() => setIsSearchOpen(true)}
         className="flex bg-slate-900 p-2 px-4
         rounded-lg space-x-4"
@@ -91,7 +91,10 @@ const SeachBar = () => {
              scrollbar-thumb-gray-700 backdrop-blur-lg">
               {searchedGames.map((game) => (
                 <div key={game.slug}
-                onClick={() => router.push(`/game/${game.slug}`)}
+                onClick={() => {
+                  router.push(`/game/${game.slug}`)
+                  setIsSearchOpen(false)
+                }}
                 className="flex items-center space-x-4 hover:bg-slate-900/60
                 transition duration-300 cursor-pointer p-4">
                   {game.background_image && (
