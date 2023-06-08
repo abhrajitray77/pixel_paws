@@ -8,6 +8,7 @@ import SessionProvider from '@/components/SessionProvider'
 import Sidebar from '@/components/Sidebar'
 import Navbar from '@/components/Navbar'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { SidebarProvider } from '@/utils/SidebarContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,6 +27,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider session={session}>
+          <SidebarProvider>
           {/* if there is no session */}
           {!session ? (
             <Login />
@@ -33,7 +35,7 @@ export default async function RootLayout({
             <div className="h-screen flex flex-col">
               <Navbar />
               <div className=" flex overflow-hidden">
-                <div className="border-r-[2px] my-4 border-r-red-600 w-auto">
+                <div className="md:border-r-[2px] md:my-4 md:border-r-red-600 w-auto">
                   {/* Sidebar */}
                   <Sidebar />
                 </div>
@@ -45,6 +47,7 @@ export default async function RootLayout({
               </div>
             </div>
           )}
+          </SidebarProvider>
         </SessionProvider>
       </body>
     </html>

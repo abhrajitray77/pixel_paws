@@ -1,21 +1,26 @@
 import { Game } from "@/gameTypes";
 import Image from "next/image";
 import AddButton from "./AddButton";
+import { useRouter } from "next/navigation";
 
 type GameCardProps = {
   game: Game;
 };
 
 const GameCard = ({ game }: GameCardProps) => {
-  const { id, name, price, released, background_image, platforms, genres } =
+  const { slug, id, name, price, released, background_image, platforms, genres } =
     game;
 
   const releasedDate = new Date(released).toLocaleDateString();
   const genreList = genres.map((genre) => genre.name).join(", ");
   const platformList = platforms.map((platform) => platform.platform.name).join(", ");
+  const router = useRouter();
 
   return (
-    <div className="bg-[#180000] block rounded-b-3xl h-min  ">
+    <div className="bg-[#180000] block rounded-b-3xl h-min cursor-pointer"
+    onClick={() => {
+      router.push(`/game/${slug}`);
+    }}>
       <Image src={background_image} alt={name} width={400} height={250} />
       <div className="p-2 py-4 space-y-2">
         <div className="flex justify-between ">
