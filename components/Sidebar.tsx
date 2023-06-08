@@ -46,11 +46,13 @@ const Sidebar = () => {
 
       {/* mobile nav  */}
       <nav
-        className={`z-50 absolute bg-black/70 flex flex-col h-screen py-4 space-y-2
-       transition-all duration-300 ease-in-out backdrop-blur-md
-      ${isSidebarOpen ? "left-[-30%]" : "left-0"}`}
+        className={`z-50 absolute md:hidden bg-black/90 py-4 h-[80vh]
+       transition-all duration-300 ease-in-out backdrop-blur-sm
+       border-r-2 border-red-500  rounded-r-3xl my-6
+      ${isSidebarOpen ? "left-[-50%]" : "left-0"}`}
       >
-        <div onClick={() => setIsSidebarOpen(true)}>
+        <div onClick={() => setIsSidebarOpen(true)}
+        className="space-y-2">
           <div className="">
             <SideButton name="Dashboard" path="/">
               <WalletIcon className="w-6 h-6" />
