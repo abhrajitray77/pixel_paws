@@ -1,4 +1,5 @@
 "use client";
+import Banner from "@/components/game/Banner";
 import { Game } from "@/gameTypes";
 import { gameDetails } from "@/rawg";
 import Image from "next/image";
@@ -10,7 +11,7 @@ type GamePageProps = {
   };
 };
 
-const GamePage = ({ params: {slug} }: GamePageProps) => {
+const GamePage = ({ params: { slug } }: GamePageProps) => {
   const [game, setGame] = useState<Game | null>(null);
   //function for getting game details
   useEffect(() => {
@@ -28,16 +29,13 @@ const GamePage = ({ params: {slug} }: GamePageProps) => {
   return (
     <div>
       {game ? (
-        <div>
-          <h1 className="text-gray-300 font-extrabold text-3xl">{game.name}</h1>
-          <Image
-            src={game.background_image}
-            alt={game.name}
-            height={600}
-            width={800}
-          />
-          <p className="text-gray-300">{game.description_raw}</p>
-        </div>
+        <Banner
+          bannerImg={game.background_image}
+          gameName={game.name}
+          gameRating={game.ratings_count}
+          gameReleaseDate={game.released}
+          gameGenres={game.genres}
+        />
       ) : (
         <div className="text-white">Loading...</div>
       )}
