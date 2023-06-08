@@ -38,7 +38,6 @@ const GamePage = ({ params: { slug } }: GamePageProps) => {
           gameReleaseDate={game.released}
           gameGenres={game.genres}
         />
-        
       ) : (
         <PacmanLoader
           className="flex mx-auto my-2"
