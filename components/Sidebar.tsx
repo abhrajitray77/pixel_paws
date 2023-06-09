@@ -8,6 +8,7 @@ import {
   WalletIcon,
 } from "@heroicons/react/24/outline";
 import { SidebarContext } from "@/utils/SidebarContext";
+import SeachBar from "./SeachBar";
 
 //TODO: add animated colour buttons on hover?
 
@@ -46,13 +47,15 @@ const Sidebar = () => {
 
       {/* mobile nav  */}
       <nav
-        className={`z-50 absolute md:hidden bg-black/90 py-4 h-[80vh]
-       transition-all duration-300 ease-in-out backdrop-blur-sm
-       border-r-2 border-red-500  rounded-r-3xl my-6
-      ${isSidebarOpen ? "left-[-50%]" : "left-0"}`}
+        className={`z-50 absolute md:hidden bg-black/80 py-4 h-[80vh]
+       transition-all duration-300 ease-in-out backdrop-blur-lg
+       border-r-2 border-red-500  rounded-r-3xl my-6 space-y-2
+      ${isSidebarOpen ? "left-[-100%]" : "left-0"}`}
       >
-        <div onClick={() => setIsSidebarOpen(true)}
-        className="space-y-2">
+        <div className="px-4">
+          <SeachBar />
+        </div>
+        <div onClick={() => setIsSidebarOpen(true)} className="space-y-2">
           <div className="">
             <SideButton name="Dashboard" path="/">
               <WalletIcon className="w-6 h-6" />

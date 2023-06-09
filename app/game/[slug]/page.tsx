@@ -48,7 +48,9 @@ const GamePage = ({ params: { slug } }: GamePageProps) => {
             gameReleaseDate={game.released}
             gameGenres={game.genres}
           />
-          <Info gameDesc={game.description_raw} />
+          <Info 
+          game = {game}
+           />
         </div>
       ) : (
         <PacmanLoader
