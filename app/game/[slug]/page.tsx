@@ -2,7 +2,9 @@
 import Banner from "@/components/game/Banner";
 import Info from "@/components/game/Info";
 import { Game } from "@/gameTypes";
-import { gameDetails } from "@/rawg";
+import { gameDetails, gameScreenshots } from "@/rawg";
+import { ResponseSchema } from "@/rawg/api";
+import { Screenshot } from "@/rawg/gameScreenshots";
 import Image from "next/image";
 import React, { use, useEffect, useState } from "react";
 import { PacmanLoader } from "react-spinners";
@@ -16,12 +18,15 @@ type GamePageProps = {
 const GamePage = ({ params: { slug } }: GamePageProps) => {
   const [game, setGame] = useState<Game | null>(null);
   const [loading, setLoading] = useState(true);
+  const [screenshots, setScreenshots] = useState<Screenshot | null>(null);
   //function for getting game details
   useEffect(() => {
     const getGame = async () => {
       try {
         setGame(await gameDetails({ slug: slug }));
+        setScreenshots(await gameScreenshots({ slug: slug }))
         setLoading(false);
+        console.log(screenshots);
       } catch (error) {
         console.error("Error loading game:", error);
       }
@@ -50,6 +55,7 @@ const GamePage = ({ params: { slug } }: GamePageProps) => {
           />
           <Info 
           game = {game}
+          screenshots = {screenshots?.results!}
            />
         </div>
       ) : (
