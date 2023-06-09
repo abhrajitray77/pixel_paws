@@ -54,7 +54,7 @@ const SeachBar = () => {
 
 
   return (
-    <div className="min-w-min relative z-50"
+    <div className="w-52 md:min-w-min relative z-50"
     ref={searchRef}
     >
       <form
