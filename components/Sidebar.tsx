@@ -3,9 +3,10 @@ import React, { useContext } from "react";
 import SideButton from "./SideButton";
 import {
   FireIcon,
+  FolderIcon,
   GiftIcon,
   SparklesIcon,
-  WalletIcon,
+  HomeIcon,
 } from "@heroicons/react/24/outline";
 import { SidebarContext } from "@/utils/SidebarContext";
 import SeachBar from "./SeachBar";
@@ -20,12 +21,12 @@ const Sidebar = () => {
       <nav className="hidden md:flex md:flex-col h-screen py-4 px-5 space-y-2">
         <div className="">
           <SideButton name="Dashboard" path="/">
-            <WalletIcon className="w-6 h-6" />
+            <HomeIcon className="w-6 h-6" />
           </SideButton>
         </div>
         <div className="">
           <SideButton name="My Library" path="/MyLib">
-            <WalletIcon className="w-6 h-6" />
+            <FolderIcon className="w-6 h-6" />
           </SideButton>
         </div>
         <div className="">
@@ -58,12 +59,12 @@ const Sidebar = () => {
         <div onClick={() => setIsSidebarOpen(true)} className="space-y-2">
           <div className="">
             <SideButton name="Dashboard" path="/">
-              <WalletIcon className="w-6 h-6" />
+              <HomeIcon className="w-6 h-6" />
             </SideButton>
           </div>
           <div className="">
             <SideButton name="My Library" path="/MyLib">
-              <WalletIcon className="w-6 h-6" />
+              <FolderIcon className="w-6 h-6" />
             </SideButton>
           </div>
           <div className="">
