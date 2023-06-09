@@ -19,7 +19,8 @@ const Info = ({ game, screenshots }: InfoProps) => {
       lg:space-x-4 mt-6 "
       >
         {/*Description*/}
-        <article className=" flex-1 p-6 space-y-4 bg-indigo-900/30">
+        <article className=" flex-1 p-6 space-y-4 bg-indigo-100/10
+        backdrop-blur-lg">
           <h1
             className="text-lg md:text-xl lg:text-2xl text-gray-200
           font-semibold"
@@ -37,7 +38,8 @@ const Info = ({ game, screenshots }: InfoProps) => {
         </article>
 
         {/*Details*/}
-        <div className=" p-6 space-y-4 bg-indigo-900/30 lg:max-w-md">
+        <div className=" p-6 space-y-4 bg-indigo-100/10 lg:max-w-md
+        backdrop-blur-sm">
           <div>
             <h1
               className="text-md md:text-lg lg:text-xl text-gray-200
@@ -49,7 +51,7 @@ const Info = ({ game, screenshots }: InfoProps) => {
               {platforms?.map((platform, index) => (
                 <li
                   key={index}
-                  className="bg-indigo-900/50 text-gray-200 px-2 py-1 
+                  className="bg-indigo-100/30 text-gray-200 px-2 py-1 
                     rounded-md mr-2 mt-2"
                 >
                   {platform.platform.name}
@@ -68,7 +70,7 @@ const Info = ({ game, screenshots }: InfoProps) => {
               {developers?.map((developer, index) => (
                 <li
                   key={index}
-                  className="bg-indigo-900/50 text-gray-200 px-2 py-1
+                  className="bg-indigo-100/30 text-gray-200 px-2 py-1
                     rounded-md mr-2 mt-2"
                 >
                   {developer.name}
@@ -87,7 +89,7 @@ const Info = ({ game, screenshots }: InfoProps) => {
               {publishers?.map((publisher, index) => (
                 <li
                   key={index}
-                  className="bg-indigo-900/50 text-gray-200 px-2 py-1
+                  className="bg-indigo-100/30 text-gray-200 px-2 py-1
                     rounded-md mr-2 mt-2"
                 >
                   {publisher.name}
@@ -99,7 +101,7 @@ const Info = ({ game, screenshots }: InfoProps) => {
       </div>
 
       {/*Screenshots*/}
-      <div className="space-y-4 p-6 bg-indigo-900/30 my-6">
+      <div className="space-y-4 p-6 bg-indigo-100/10 my-6">
         <h1
           className="text-lg md:text-xl lg:text-2xl text-gray-200
         font-semibold"
