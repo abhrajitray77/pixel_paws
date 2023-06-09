@@ -31,6 +31,14 @@ const GamePage = ({ params: { slug } }: GamePageProps) => {
 
   return (
     <div>
+      <div className="absolute inset-0 -z-50
+      opacity-10 blur-sm">
+        <Image
+        src={game?.background_image!}
+        alt="bg"
+        fill
+         />
+      </div>
       {game ? (
         <div>
           <Banner
