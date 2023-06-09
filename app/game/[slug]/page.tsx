@@ -26,7 +26,6 @@ const GamePage = ({ params: { slug } }: GamePageProps) => {
         setGame(await gameDetails({ slug: slug }));
         setScreenshots(await gameScreenshots({ slug: slug }))
         setLoading(false);
-        console.log(screenshots);
       } catch (error) {
         console.error("Error loading game:", error);
       }
@@ -53,10 +52,19 @@ const GamePage = ({ params: { slug } }: GamePageProps) => {
             gameReleaseDate={game.released}
             gameGenres={game.genres}
           />
+          {screenshots?.results ? (
           <Info 
           game = {game}
           screenshots = {screenshots?.results!}
            />
+          ) : (
+            <PacmanLoader
+            className="flex mx-auto my-2"
+            color="#ffa600"
+            size={20}
+            loading={loading}
+          />
+          )}
         </div>
       ) : (
         <PacmanLoader

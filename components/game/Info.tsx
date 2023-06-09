@@ -2,26 +2,15 @@ import { Game } from "@/gameTypes";
 import { Screenshot, ScreenshotItem } from "@/rawg/gameScreenshots";
 import Image from "next/image";
 import React from "react";
+import imgPlace from "../../public/imgs/imgPlaceholder.jpg";
 
 type InfoProps = {
   game: Game;
   screenshots: ScreenshotItem[];
 };
 
-const Info = ({
-  game,
-  screenshots,
-}: {
-  game: Game;
-  screenshots: ScreenshotItem[];
-}) => {
-  const {
-    description_raw,
-    platforms,
-    developers,
-    publishers,
-    short_screenshots,
-  } = game;
+const Info = ({ game, screenshots }: InfoProps) => {
+  const { description_raw, platforms, developers, publishers } = game;
   return (
     <div>
       <div
@@ -37,15 +26,14 @@ const Info = ({
           >
             Description
           </h1>
-          {description_raw.split("###").map((p, index) => (
-            <p
-              key={index}
-              className="text-gray-400 h-40 md:h-60 overflow-y-scroll
+          <div
+            className="text-gray-400 h-40 md:h-60 overflow-y-scroll
             scrollbar-thin"
-            >
-              {p}
-            </p>
-          ))}
+          >
+            {description_raw.split("###").map((p, index) => (
+              <p key={index}>{p}</p>
+            ))}
+          </div>
         </article>
 
         {/*Details*/}
@@ -111,24 +99,27 @@ const Info = ({
       </div>
 
       {/*Screenshots*/}
-      <div>
+      <div className="space-y-4">
         <h1
-          className="text-md md:text-lg lg:text-xl text-gray-200
-        font-semibold text-center mt-6"
+          className="text-lg md:text-xl lg:text-2xl text-gray-200
+        font-semibold mt-6"
         >
           Screenshots
         </h1>
-        <div className="flex flex-wrap justify-center">
-          {short_screenshots?.map((screenshot) => (
-            <div key={screenshot.id} className="text-white">
-              {screenshot.image}
-            </div>
-            /*             <Image
+        <div
+          className="grid grid-cols-1 md:grid-cols-2
+        drop-shadow-lg gap-4 h-80 overflow-y-scroll scrollbar-thin
+        "
+        >
+          {screenshots?.map((screenshot) => (
+            <Image
               key={screenshot.id}
-              src={screenshot.image}
+              src={screenshot?.image ? screenshot.image : imgPlace}
               alt={screenshot.id.toString()}
-              className="w-1/2 md:w-1/3 lg:w-1/4 h-48 md:h-60 lg:h-72 object-cover"
-            /> */
+              width={screenshot.width}
+              height={screenshot.height}
+              className="w-full object-cover"
+            />
           ))}
         </div>
       </div>
