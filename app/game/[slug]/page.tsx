@@ -1,5 +1,6 @@
 "use client";
 import Banner from "@/components/game/Banner";
+import Info from "@/components/game/Info";
 import { Game } from "@/gameTypes";
 import { gameDetails } from "@/rawg";
 import Image from "next/image";
@@ -31,13 +32,16 @@ const GamePage = ({ params: { slug } }: GamePageProps) => {
   return (
     <div>
       {game ? (
-        <Banner
-          bannerImg={game.background_image}
-          gameName={game.name}
-          gameRating={game.ratings_count}
-          gameReleaseDate={game.released}
-          gameGenres={game.genres}
-        />
+        <div>
+          <Banner
+            bannerImg={game.background_image}
+            gameName={game.name}
+            gameRating={game.ratings_count}
+            gameReleaseDate={game.released}
+            gameGenres={game.genres}
+          />
+          <Info gameDesc={game.description_raw} />
+        </div>
       ) : (
         <PacmanLoader
           className="flex mx-auto my-2"
