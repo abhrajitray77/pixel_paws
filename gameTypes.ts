@@ -10,6 +10,7 @@ type Game = {
     website: string,
     released: string,
     background_image: string,
+    metacritic: number,
     developers: {
       name: string,
     }[],

@@ -42,7 +42,7 @@ const Banner = ({
                     Metacritic Rating: { gameRating } 
                 </h2>
                 <h2 className='mt-1 text-md text-indigo-100 max-w-3xl'>
-                    Release Date: { gameReleaseDate }
+                    Release Date: {new Date(gameReleaseDate).toLocaleDateString()}
                 </h2>
             </div>
         </div>

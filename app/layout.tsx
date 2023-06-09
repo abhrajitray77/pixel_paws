@@ -40,7 +40,7 @@ export default async function RootLayout({
                   <Sidebar />
                 </div>
 
-                <div className="flex-1 p-6 py-10 w-auto overflow-y-scroll scrollbar-track-transparent
+                <div className="flex-1 p-6 py-0 my-10 w-auto overflow-y-scroll scrollbar-track-transparent
                 scrollbar-thumb-gray-600 scrollbar-thin">
                   <div className="max-h-full">{children}</div>
                 </div>

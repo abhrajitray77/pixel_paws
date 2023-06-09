@@ -12,11 +12,11 @@ type InfoProps = {
 const Info = ({ game, screenshots }: InfoProps) => {
   const { description_raw, platforms, developers, publishers } = game;
   return (
-    <div>
+    <div className="">
       <div
         className="flex flex-col lg:flex-row space-y-10
       lg:space-y-0
-      lg:space-x-4 pt-6 "
+      lg:space-x-4 mt-6 "
       >
         {/*Description*/}
         <article className=" flex-1 p-6 space-y-4 bg-indigo-900/30">
@@ -99,10 +99,10 @@ const Info = ({ game, screenshots }: InfoProps) => {
       </div>
 
       {/*Screenshots*/}
-      <div className="space-y-4">
+      <div className="space-y-4 p-6 bg-indigo-900/30 my-6">
         <h1
           className="text-lg md:text-xl lg:text-2xl text-gray-200
-        font-semibold mt-6"
+        font-semibold"
         >
           Screenshots
         </h1>

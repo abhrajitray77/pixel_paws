@@ -48,7 +48,7 @@ const GamePage = ({ params: { slug } }: GamePageProps) => {
           <Banner
             bannerImg={game.background_image}
             gameName={game.name}
-            gameRating={game.ratings_count}
+            gameRating={game.metacritic}
             gameReleaseDate={game.released}
             gameGenres={game.genres}
           />
