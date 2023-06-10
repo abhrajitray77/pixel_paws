@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <nav className="flex flex-col space-y-1/2 bg-black">
       <div className="flex justify-between items-center">
-        <div className="p-2 pl-0 w-20 flex items-center space-x-2">
+        <div className="p-2 pl-0 w-20 flex items-center space-x-6">
           <Image
             onClick={handleLogoClick}
             className="rounded-e-full"
@@ -29,7 +29,16 @@ const Navbar = () => {
             priority
           />
           <div className="hidden md:block">
-          <SeachBar />
+            <SeachBar />
+          </div>
+          <div className="flex flex-col space-x-2 md:hidden font-bold">
+            <h1 className="text-2xl text-indigo-300">
+              PixelPaws
+            </h1>
+            <h1 className="text-gray-600 hover:text-red-500 transition
+            duration-300 hover:scale-105 text-xs cursor-pointer">
+              RAWG x Appwrite
+            </h1>
           </div>
         </div>
 
