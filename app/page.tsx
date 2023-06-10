@@ -5,12 +5,17 @@ import Upcoming from "@/components/dashboard/Upcoming";
 
 function Home() {
   return (
-    <div className="text-white">
-      <div>
+    <main className="text-white">
+      <section className="">
         <Featured />
+      </section>
+      <section className="">
         <Upcoming />
-      </div>
-    </div>
+      </section>
+      <section>
+        
+      </section>
+    </main>
   );
 }
 

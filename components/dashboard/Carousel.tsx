@@ -44,7 +44,7 @@ const Carousel = ({ games }: Props) => {
           scrollbar-none md:p-2"
         >
           {games.map((game) => (
-            <div key={game.id} className="flex max-h-[208px]">
+            <div key={game.id} className="flex min-w-[150px] md:min-w-[384px]">
               <CarouselCard game={game} />
             </div>
           ))}

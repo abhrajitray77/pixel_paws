@@ -19,7 +19,7 @@ const CarouselCard = ({ game }: CarouselCardProps) => {
 
   return (
     <div
-      className="relative block rounded-3xl h-max cursor-pointer 
+      className="block rounded-3xl h-max cursor-pointer 
       hover:scale-105 transition-all duration-300 ease-in-out
       "
       onClick={() => {
@@ -31,7 +31,7 @@ const CarouselCard = ({ game }: CarouselCardProps) => {
         backgroundPosition: "center",
       }}
     >
-      <div className="flex min-w-[250px] md:min-w-[384px]  ">
+      <div className="flex ">
         <Image
           src={background_image}
           alt={name}
