@@ -3,14 +3,7 @@ import { Game } from "@/gameTypes";
 import { gameList } from "@/rawg";
 import React, { useEffect, useState } from "react";
 import CarouselCard from "./CarouselCard";
-
-const spotlightTime: number = 10;
-
-const spotArray = (array: unknown[]) => {
-  const newArray = [...array];
-  newArray.push(newArray.shift());
-  return newArray;
-};
+// To do later, when doing ui/ux. use framer motion to animate the carousel
 
 const getSpotlightItems = (items: unknown[], length: number) => {
   const randomItems: unknown[] = [];
@@ -27,7 +20,6 @@ const Featured = () => {
   const [games, setGames] = useState<Game[] | null>(null);
 
   useEffect(() => {
-    let interval: NodeJS.Timer;
     const loadGames = async () => {
       const response = await gameList({ pageIndex: 0, page: 1, pageSize: 10 });
       let { results } = response;
@@ -37,26 +29,37 @@ const Featured = () => {
     //setting games to the results of loadGames
     (async () => {
       const loadedGames = await loadGames();
-      const games = getSpotlightItems(loadedGames, 4) as Game[];
+      const games = getSpotlightItems(loadedGames, 3) as Game[];
       setGames(games);
-      interval = setInterval(() => {
-        setGames((games) => spotArray(games as Game[]) as Game[]);
-      }, spotlightTime * 1000);
     })();
   }, []);
 
   return (
-    <div>
-      <h1 className="text-gray-100 text-xl md:text-3xl font-bold">Featured</h1>
+    <div className="">
+      <h1 className="text-gray-100 text-xl md:text-3xl font-bold
+      ">
+        Featured
+      </h1>
       {games ? (
         games.length ? (
-          <div className="grid grid-cols-2 ">
-            <div>
-              <CarouselCard game={games[0]} />
+          <div className="flex justify-center my-4">
+            <div
+              className="grid grid-cols-1 md:grid-cols-2
+           gap-4 place-items-center"
+            >
+              <div className="flex items-center">
+                <CarouselCard game={games[0]} />
+              </div>
+
+              <div
+                className="flex md:flex-col gap-2 md:gap-4
+            md:max-w-[384px]"
+              >
+                {games.slice(1).map((game) => (
+                  <CarouselCard key={game.id} game={game} />
+                ))}
+              </div>
             </div>
-            {games.map((game) => (
-              <CarouselCard key={game.id} game={game} />
-            ))}
           </div>
         ) : (
           <p className="text-gray-100">No games found</p>
