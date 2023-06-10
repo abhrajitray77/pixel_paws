@@ -40,10 +40,13 @@ const Carousel = ({ games }: Props) => {
 
         <div
           ref={rowRef}
-          className="flex items-center space-x-0.5 overflow-x-scroll md:space-x-3 scrollbar-none md:p-2"
+          className="flex items-center space-x-0.5 overflow-x-scroll md:space-x-3 
+          scrollbar-none md:p-2"
         >
           {games.map((game) => (
-            <CarouselCard key={game.id} game={game} />
+            <div key={game.id} className="flex max-h-[208px]">
+              <CarouselCard game={game} />
+            </div>
           ))}
         </div>
 

@@ -7,8 +7,8 @@ function Home() {
   return (
     <div className="text-white">
       <div>
-{/*         <Featured />
-        <Upcoming /> */}
+        <Featured />
+        <Upcoming />
       </div>
     </div>
   );
