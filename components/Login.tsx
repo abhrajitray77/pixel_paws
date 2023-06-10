@@ -10,7 +10,7 @@ const Login = () => {
     <div className="h-screen flex items-center justify-center">
       <div className="flex flex-col mx-auto items-center space-y-10 bg-red-100 p-8
       rounded-3xl">
-        <h1 className="text-6xl font-extrabold text-red-600 drop-shadow-lg">GameNeko</h1>
+        <h1 className="text-6xl font-extrabold text-red-600 drop-shadow-lg">PixelPaws</h1>
         <div className="h-40 w-40 drop-shadow-xl">
           <Image
             className="rounded-full"
