@@ -12,7 +12,7 @@ const Upcoming = () => {
     const loadGames = async () => {
       setLoading(true);
       const response = await gameList({
-        pageSize: 10,
+        pageSize: 8,
         pageIndex: 1,
         page: 1,
         ordering: "-released",

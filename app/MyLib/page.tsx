@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import GameCard from "@/components/GameCard";
 import Grid from "@/components/Grid";
@@ -28,7 +27,6 @@ const MyLib = () => {
         [Query.equal("user_id", userID)]
       );
       searchPromise.then(function (response) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         gameIds = response.documents.map((game) => game.game_id);
         //getting game details for each game id
         gameDetailsPromises = gameIds.map((gameId) =>

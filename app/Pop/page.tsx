@@ -12,7 +12,7 @@ const Mpop = () => {
   //function to load games
   useEffect(() => {
     const loadGames = async () => {
-      const response = await gameList({ pageIndex: 0, page: 1 });
+      const response = await gameList({ pageIndex: 0, page: 1, pageSize: 10 });
       let { results } = response;
      // results = results.filter((game) => game.ratings_count > 10);
       results.forEach((game) => (game.price = getPrice(game)));

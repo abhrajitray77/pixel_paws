@@ -12,7 +12,7 @@ interface Params {
 const links = [
   {
     name: 'most popular',
-    path: 'lists/popular?discover=true&page_size=50',
+    path: 'lists/popular?discover=true',
   },
   {
     name: 'new releases',
