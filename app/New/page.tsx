@@ -15,13 +15,12 @@ const NewR = () => {
 
   //function to load games
   useEffect(() => {
-    console.log("pageNo", pageNo);
     const loadGames = async () => {
       setLoading(true);
       const response = await gameList({
         pageIndex: 1,
         page: pageNo,
-        ordering: "released",
+        ordering: "-released",
       });
       let { results } = response;
 

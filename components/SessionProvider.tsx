@@ -47,7 +47,6 @@ const SessionProvider = ({ children, session}: Props) => {
 
             createPromise.then(
               function (response) {
-                console.log(response);
                 toast.success("Welcome to GameNeko!");
               },
               function (error) {
@@ -57,7 +56,6 @@ const SessionProvider = ({ children, session}: Props) => {
             );
           } else {
             // Username and email already exist, do something else
-            console.log("Username and email already exist");
             userID = response.documents[0].$id;
 
           }

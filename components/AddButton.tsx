@@ -67,7 +67,6 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
       );
       createPromise.then(
         function (response) {
-          console.log(response);
           toast.success("Added to Library!");
           setGameAdded(true);
         },
@@ -88,7 +87,6 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
       );
       createPromise.then(
         function (response) {
-          console.log(response);
           toast.success("Added to Wishlist!");
           setGameAdded(true);
         },
@@ -106,7 +104,6 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
           <CheckCircleIcon className="h-6 w-6 text-green-500" />
         ) : (
           <div className="flex space-x-2 font-semibold justify-between">
-            <h3 className="text-gray-400">Add to Library</h3>
             <PlusCircleIcon
               className="h-6 w-6 text-green-500 cursor-pointer
               hover:scale-110
@@ -120,8 +117,8 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
           <HeartIcon className="h-6 w-6 text-red-500" />
         ) : (
           <div className="flex text-gray-400 space-x-2 font-semibold justify-between
-          hover:text-red-500 transition-colors duration-300 ease-in-out">
-            <h3 className="">Add to Wishlist</h3>
+          hover:text-red-500 transition-colors duration-300 ease-in-out"
+          aria-label="Add to Wishlist">
             <HeartIcon
               className="h-6 w-6 cursor-pointer hover:scale-110
               transition-transform duration-300 ease-in-out"

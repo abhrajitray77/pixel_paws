@@ -1,9 +1,17 @@
-
 /* export let userID: string; */
 
-function Home() {
+import Featured from "@/components/dashboard/Featured";
+import Upcoming from "@/components/dashboard/Upcoming";
 
-  return <div className="text-white">DashBoard</div>;
+function Home() {
+  return (
+    <div className="text-white">
+      <div>
+{/*         <Featured />
+        <Upcoming /> */}
+      </div>
+    </div>
+  );
 }
 
 export default Home;
