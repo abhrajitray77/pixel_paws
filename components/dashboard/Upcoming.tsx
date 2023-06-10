@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Carousel from "./Carousel";
 import { Game } from "@/gameTypes";
 import { gameList } from "@/rawg";
-
+//for getting upcoming games
 const Upcoming = () => {
   const [games, setGames] = useState<Game[] | null>(null);
   const [loading, setLoading] = useState(false);

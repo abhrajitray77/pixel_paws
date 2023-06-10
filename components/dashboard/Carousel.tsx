@@ -2,10 +2,9 @@
 import React from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useRef, useState } from "react";
-
 import { Game } from "@/gameTypes";
-import GameCard from "../GameCard";
-
+import CarouselCard from "./CarouselCard";
+//Carousel component for displaying games in dashboard page
 type Props = {
   games: Game[];
 };
@@ -30,7 +29,7 @@ const Carousel = ({ games }: Props) => {
   };
 
   return (
-    <div className="h-40 space-y-0.5 md:space-y-2">
+    <div className=" space-y-0.5 md:space-y-2">
       <div className="group relative md:-ml-2">
         <ChevronLeftIcon
           className={`absolute fill-slate-200 top-0 bottom-0 left-2 z-40
@@ -41,10 +40,10 @@ const Carousel = ({ games }: Props) => {
 
         <div
           ref={rowRef}
-          className="flex items-center space-x-0.5 overflow-x-scroll md:space-x-2.5 scrollbar-hide md:p-2"
+          className="flex items-center space-x-0.5 overflow-x-scroll md:space-x-3 scrollbar-none md:p-2"
         >
           {games.map((game) => (
-            <GameCard key={game.id} game={game} />
+            <CarouselCard key={game.id} game={game} />
           ))}
         </div>
 
