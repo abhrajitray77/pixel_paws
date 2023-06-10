@@ -15,7 +15,6 @@ const NewR = () => {
 
   //function to load games
   useEffect(() => {
-    console.log("pageNo", pageNo);
     const loadGames = async () => {
       setLoading(true);
       const response = await gameList({

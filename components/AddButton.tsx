@@ -67,7 +67,6 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
       );
       createPromise.then(
         function (response) {
-          console.log(response);
           toast.success("Added to Library!");
           setGameAdded(true);
         },
@@ -88,7 +87,6 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
       );
       createPromise.then(
         function (response) {
-          console.log(response);
           toast.success("Added to Wishlist!");
           setGameAdded(true);
         },

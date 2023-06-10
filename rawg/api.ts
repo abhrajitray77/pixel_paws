@@ -2,6 +2,8 @@ const api = {
     url: "https://api.rawg.io/api/",
     key: process.env.RAWG_API_KEY!,
   };
+
+  let req_count: number = 0;
   
   interface ResponseSchema<T> {
     count: number;
@@ -16,7 +18,8 @@ const api = {
     if (!response.ok) throw new Error(response.statusText);
   
     const data = await response.json();
-  
+    req_count++;
+    console.log(`[RAWG] Request #${req_count} to ${endpoint}`);
     return data;
   }
   

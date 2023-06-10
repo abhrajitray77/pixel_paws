@@ -32,7 +32,7 @@ const Upcoming = () => {
         console.error("Error loading games:", error);
       }
     })();
-  }, [games]);
+  }, []);   //fixed request loop due to games dependency
 
   return (
     <div className="">
