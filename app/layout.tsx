@@ -13,7 +13,7 @@ import { SidebarProvider } from '@/utils/SidebarContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'GameNeko',
+  title: 'PixelPaws',
   description: 'Your favorite games, all in one place.',
 }
 
