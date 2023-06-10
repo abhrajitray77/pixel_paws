@@ -21,7 +21,7 @@ const NewR = () => {
       const response = await gameList({
         pageIndex: 1,
         page: pageNo,
-        ordering: "released",
+        ordering: "-released",
       });
       let { results } = response;
 

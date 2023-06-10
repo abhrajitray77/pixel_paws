@@ -1,9 +1,15 @@
-
 /* export let userID: string; */
 
-function Home() {
+import Upcoming from "@/components/dashboard/Upcoming";
 
-  return <div className="text-white">DashBoard</div>;
+function Home() {
+  return (
+    <div className="text-white">
+      <div>
+        <Upcoming />
+      </div>
+    </div>
+  );
 }
 
 export default Home;
