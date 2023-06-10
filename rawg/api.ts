@@ -1,3 +1,5 @@
+'use client'
+
 const api = {
   url: "https://api.rawg.io/api/",
   key: process.env.RAWG_API_KEY!,
@@ -16,9 +18,17 @@ interface ResponseSchema<T> {
 }
 
 async function get<T>(endpoint: string): Promise<T> {
-  // Check if the response is already cached
+  // Check if the response is already cached in local storage or memory
   if (cache[endpoint]) {
     console.log(`[RAWG] Returning cached response for ${endpoint}`);
+    return cache[endpoint];
+  }
+
+  // Check if there is a cached value of the response in local storage
+  const cachedData = localStorage.getItem(endpoint);
+  if (cachedData) {
+    console.log(`[RAWG] Retrieving cached response for ${endpoint}`);
+    cache[endpoint] = JSON.parse(cachedData);
     return cache[endpoint];
   }
 
@@ -30,8 +40,9 @@ async function get<T>(endpoint: string): Promise<T> {
   req_count++;
   console.log(`[RAWG] Request #${req_count} to ${endpoint}`);
 
-  // Cache the response for future use
+  // Cache the response for future use in local storage and memory
   cache[endpoint] = data;
+  localStorage.setItem(endpoint, JSON.stringify(data));
 
   return data;
 }
