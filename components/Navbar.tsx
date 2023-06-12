@@ -5,13 +5,11 @@ import React, { useContext, useEffect, useState } from "react";
 import logo from "../public/imgs/nekored.webp";
 import SeachBar from "./SeachBar";
 import { SidebarContext } from "@/utils/SidebarContext";
-/* import { SessionContext } from "@/utils/SessionContext"; */
 import { account, avatar, getSessionData } from "@/utils/appwrite";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
-/*   const { sessionData } = useContext(SessionContext); */
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
   const [session, setSession] = useState<any>(null);
   const router = useRouter();

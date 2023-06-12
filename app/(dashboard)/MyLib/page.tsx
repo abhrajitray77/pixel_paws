@@ -1,7 +1,6 @@
-/* "use client";
+"use client";
 import GameCard from "@/components/GameCard";
 import Grid from "@/components/Grid";
-import { userID } from "@/components/SessionProvider";
 import { Game } from "@/gameTypes";
 import { gameDetails, gameList } from "@/rawg";
 import { get } from "@/rawg/api";
@@ -23,8 +22,7 @@ const MyLib = () => {
     const getGameIds = () => {
       const searchPromise = database.listDocuments(
         `${databaseId}`,
-        `${mylibCol}`,
-        [Query.equal("user_id", userID)]
+        `${mylibCol}`
       );
       searchPromise.then(function (response) {
         gameIds = response.documents.map((game) => game.game_id);
@@ -61,4 +59,3 @@ const MyLib = () => {
 };
 
 export default MyLib;
- */

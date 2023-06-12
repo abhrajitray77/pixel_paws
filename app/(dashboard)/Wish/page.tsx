@@ -1,6 +1,5 @@
-/* 'use client'
+'use client'
 import Grid from '@/components/Grid';
-import { userID } from '@/components/SessionProvider';
 import { Game } from '@/gameTypes';
 import { gameDetails } from '@/rawg';
 import { database, databaseId, wishlistCol } from '@/utils/appwrite';
@@ -20,7 +19,6 @@ const Wish = () => {
     const searchPromise = database.listDocuments(
       `${databaseId}`,
       `${wishlistCol}`,
-      [Query.equal("user_id", userID)]
     );
     searchPromise.then(function (response) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,4 +55,4 @@ return (
 );
 };
 
-export default Wish */
+export default Wish
