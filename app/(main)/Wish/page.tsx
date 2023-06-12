@@ -2,7 +2,7 @@
 import Grid from '@/components/Grid';
 import { Game } from '@/gameTypes';
 import { gameDetails } from '@/rawg';
-import { database, databaseId, getSessionData, userID, wishlistCol } from '@/utils/appwrite';
+import { database, databaseId, getSessionData, getWishlist, userID, wishlistCol, wishlistData } from '@/utils/appwrite';
 import { Query } from 'appwrite';
 import React, { useEffect, useState } from 'react'
 
@@ -12,34 +12,26 @@ const Wish = () => {
 
   //function to load games
   useEffect(() => {
+    getWishlist();
     let gameIds: number[] = [];
     let gameDetailsPromises: Promise<Game>[];
-
-  const getGameIds = () => {
-    const searchPromise = database.listDocuments(
-      `${databaseId}`,
-      `${wishlistCol}`,
-      [Query.equal("user_id", userID )]
-
-    );
-    searchPromise.then(function (response) {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      gameIds = response.documents.map((game) => game.game_id);
-      //getting game details for each game id
-      gameDetailsPromises = gameIds.map((gameId) => gameDetails({id: gameId}));
-      //setting games
-      Promise.all(gameDetailsPromises).then((games) => { 
-        setGames(games);
-      }
-      );
-    });
-  };
-  //TO-DO: temporary fix for reload userID undefined issue
-  setTimeout(() => {
-    getGameIds();
-  }
-  , 1000);
-}, []);
+    
+    const getGameIds = () => {
+        gameIds = wishlistData?.map((game) => game.game_id);
+        //getting game details for each game id
+        gameDetailsPromises = gameIds?.map((gameId) =>
+          gameDetails({ id: gameId })
+        );
+        //setting games
+        Promise.all(gameDetailsPromises).then((games) => {
+          setGames(games);
+        });
+    };
+    //TO-DO: temporary fix for reload userID undefined issue
+    setTimeout(() => {
+      getGameIds();
+    }, 1000);
+  }, []);
 
 return (
   <div className="space-y-4">
