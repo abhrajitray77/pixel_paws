@@ -2,7 +2,7 @@ import { Game } from "@/gameTypes";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
-import AddButton from "../AddButton";
+/* import AddButton from "../AddButton"; */
 
 type CarouselCardProps = {
   game: Game;

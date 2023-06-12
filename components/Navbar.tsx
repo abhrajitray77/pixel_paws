@@ -1,19 +1,41 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Image from "next/image";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../public/imgs/nekored.webp";
-import { signOut, useSession } from "next-auth/react";
 import SeachBar from "./SeachBar";
 import { SidebarContext } from "@/utils/SidebarContext";
+import { account, avatar, getSessionData } from "@/utils/appwrite";
+import { AppwriteException } from "appwrite";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
-  const { data: session, status } = useSession();
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+  const [session, setSession] = useState<any>(null);
+  const router = useRouter();
 
   const handleLogoClick = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+    const oAuthLogout = () => {
+      console.log("Logging out...")
+      try {
+        account.deleteSession("current");
+        console.log("Logged out!")
+        router.push("/");
+      } catch (AppwriteException) {
+        console.error("OAuth logout error:", AppwriteException);
+      }
+    };
+
+  useEffect (() => {
+    ( async () => {
+    setSession(await getSessionData());
+    })();
+  }, []);
+  
+    
 
   return (
     <nav className="flex flex-col space-y-1/2 bg-black">
@@ -45,21 +67,21 @@ const Navbar = () => {
         <ul className="flex space-x-10 mr-4 text-gray-100 items-center">
           <li className="hidden md:block">
             <h2 className="font-semibold text-xl">
-              Welcome, {session?.user?.name}!
+              Welcome, {session?.name!}!
             </h2>
           </li>
           <li>
             <button
-              onClick={() => signOut()}
+              onClick={() => oAuthLogout()}
               className="cursor-pointer hover:ring-4 rounded-full
-              transition-all ring-red-500 duration-300 ease-in"
+              transition-all ring-red-500 duration-300 ease-in text-white"
               aria-label="Logout"
               name="Logout"
               title="Logout"
             >
               <img
                 className="rounded-full w-12 h-12"
-                src={`${session?.user?.image}`}
+                src={`${avatar.getInitials()}`}
                 alt="Profile"
                 width={50}
                 height={50}

@@ -20,7 +20,7 @@ const Sidebar = () => {
     <div className="">
       <nav className="hidden md:flex md:flex-col h-screen py-4 px-5 space-y-2">
         <div className="">
-          <SideButton name="Dashboard" path="/">
+          <SideButton name="Dashboard" path="/dashboard">
             <HomeIcon className="w-6 h-6" />
           </SideButton>
         </div>
@@ -58,7 +58,7 @@ const Sidebar = () => {
         </div>
         <div onClick={() => setIsSidebarOpen(true)} className="space-y-2">
           <div className="">
-            <SideButton name="Dashboard" path="/">
+            <SideButton name="Dashboard" path="/dashboard">
               <HomeIcon className="w-6 h-6" />
             </SideButton>
           </div>
