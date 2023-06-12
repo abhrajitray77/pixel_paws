@@ -3,6 +3,7 @@ import React from "react";
 import logo from "../public/imgs/nekored.webp";
 import Image from "next/image";
 import { account } from "@/utils/appwrite";
+import { BsDiscord } from "react-icons/bs";
 
 const Login = () => {
   const oAuthLogin = () => {
@@ -52,11 +53,12 @@ const Login = () => {
         </form>
 
         <button
-          className="px-6 py-3 bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110
-       transition-all duration-300 ease-in-out font-semibold"
+          className="px-6 py-3 flex bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110
+       transition-all duration-300 ease-in-out font-semibold items-center justify-between space-x-2"
           onClick={() => oAuthLogin()}
         >
-          Login with discord
+          <BsDiscord /> 
+         <h1>Login with Discord</h1>
         </button>
       </div>
     </div>
