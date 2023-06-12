@@ -8,7 +8,8 @@ const Login = () => {
 
   const oAuthLogin = () => {
     try {
-      account.createOAuth2Session("discord", "/")
+      account.createOAuth2Session("discord"
+      , "http://localhost:3000/")
     } catch (error) {
       console.error("OAuth login error:", error);
     }

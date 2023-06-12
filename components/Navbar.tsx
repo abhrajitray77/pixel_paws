@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Image from "next/image";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../public/imgs/nekored.webp";
 import SeachBar from "./SeachBar";
 import { SidebarContext } from "@/utils/SidebarContext";
@@ -11,8 +11,8 @@ import { AppwriteException } from "appwrite";
 
 const Navbar = () => {
 /*   const { sessionData } = useContext(SessionContext); */
-const sessionData = getSession()
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+  const [session, setSession] = useState<any>(null);
 
   const handleLogoClick = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -28,6 +28,14 @@ const sessionData = getSession()
     };
     oAuthLogout();
   };
+
+  useEffect (() => {
+    ( async () => {
+    setSession(await getSession());
+    })();
+  }, []);
+  
+    
 
   return (
     <nav className="flex flex-col space-y-1/2 bg-black">
@@ -59,7 +67,7 @@ const sessionData = getSession()
         <ul className="flex space-x-10 mr-4 text-gray-100 items-center">
           <li className="hidden md:block">
             <h2 className="font-semibold text-xl">
-              Welcome, {sessionData.then((data) => data?.name!)}!
+              Welcome, {session?.name!}!
             </h2>
           </li>
           <li>
@@ -71,7 +79,7 @@ const sessionData = getSession()
               name="Logout"
               title="Logout"
             >
-              {sessionData.then((data) => data?.email!)}
+              {session?.email!}
 {/*               <img
                 className="rounded-full w-12 h-12"
                 src={`${sessionData.then((data) => data.)}`}

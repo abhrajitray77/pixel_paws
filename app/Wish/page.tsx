@@ -1,4 +1,4 @@
-'use client'
+/* 'use client'
 import Grid from '@/components/Grid';
 import { userID } from '@/components/SessionProvider';
 import { Game } from '@/gameTypes';
@@ -57,4 +57,4 @@ return (
 );
 };
 
-export default Wish
+export default Wish */

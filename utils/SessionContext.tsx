@@ -55,8 +55,8 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
       const searchPromise = database.listDocuments(
         `${databaseId}`,
         `${userdataCol}`,
-        [Query.equal("username", sessionData?.then((data:any) => data?.name!) ),
-         Query.equal("email", sessionData?.then((data:any) => data?.email!) )]
+        [Query.equal("username", sessionData?.name! ),
+         Query.equal("email", sessionData?.email! )]
       );
 
       searchPromise.then(
@@ -68,8 +68,8 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
               `${userdataCol}`,
               ID.unique(),
               {
-                username: sessionData?.then((data:any) => data?.name!),
-                email: sessionData?.then((data:any) => data?.email!),
+                username: sessionData?.name!,
+                email: sessionData?.email!,
               }
             );
 

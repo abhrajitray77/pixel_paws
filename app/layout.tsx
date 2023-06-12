@@ -6,6 +6,7 @@ import Sidebar from '@/components/Sidebar'
 import Navbar from '@/components/Navbar'
 import { SidebarProvider } from '@/utils/SidebarContext'
 import { SessionContext, SessionProvider } from '@/utils/SessionContext'
+import { useContext } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +20,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
   const session = await getSession()
 
   return (
@@ -27,7 +29,7 @@ export default async function RootLayout({
         <SessionProvider>
           <SidebarProvider>
           {/* if there is no session */}
-          {!session ? (
+          {session?.status ? (
             <Login />
           ) : (
             <div className="h-screen flex flex-col">
