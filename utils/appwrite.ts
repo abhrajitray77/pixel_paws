@@ -13,9 +13,10 @@ export const mylibCol = process.env.NEXT_PUBLIC_APPWRITE_MYLIB_COLLECTION!;
 export const wishlistCol = process.env.NEXT_PUBLIC_APPWRITE_WISHLIST_COLLECTION!;
 
 //fetching account data
-export const getSession = async () => {
+export const getSessionData = async () => {
   try {
-    const data = await account.get();
+    const data = await account.get()
+    console.log("Session data:", data)
     return data;
   } catch (error: unknown) {
     console.error("Error getting session data:", error);

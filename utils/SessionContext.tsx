@@ -1,7 +1,7 @@
-"use client";
+/* "use client";
 import { createContext, useState, useEffect, ReactNode } from "react";
 import { useRouter } from "next/navigation";
-import { database, databaseId, getSession, userdataCol } from "./appwrite";
+import { database, databaseId, getSessionData, userdataCol } from "./appwrite";
 import { PacmanLoader } from "react-spinners";
 import { ID, Query } from "appwrite";
 import { toast } from "react-hot-toast";
@@ -21,6 +21,7 @@ export const SessionContext = createContext<SessionContextProps>({
 });
 
 export let userID: string;
+export let session: boolean = false;
 
 export const SessionProvider = ({ children }: SessionProviderProps) => {
   const router = useRouter();
@@ -31,26 +32,25 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
   //for getting userID from appwrite
 
   useEffect(() => {
-    const checkSess = async () => {
-      try {
-        const session = await getSession();
-        if (session) {
-          setSessionData(session);
-          setLoggedIn(true);
-        } else {
-          console.log("No session found");
-          setLoggedIn(false);
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error("Session checking error:", error);
-        setLoading(false);
+    getSessionData().then((data) => {
+      if (data) {
+        setLoggedIn(true);
+        setSessionData(data);
+        session = true;
+      } else {
+        setLoggedIn(false);
+        setSessionData(null);
+        session = false;
       }
-    };
+      setLoading(false);
+      console.log(sessionData, session)
+    }).catch((error) => {
+      console.log(error);
+      toast.error("Something went wrong!");
+    });
 
-    checkSess();
-
-    if (sessionData) {
+ */
+/*     if (sessionData) {
       // Check if the username and email exist in the document
       const searchPromise = database.listDocuments(
         `${databaseId}`,
@@ -92,8 +92,8 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
           toast.error("Something went wrong!");
         }
       );
-    }
-  }, [sessionData]);
+    } */
+/*   }, []);
 
   if (loading) {
     return (
@@ -109,3 +109,4 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
     </SessionContext.Provider>
   );
 };
+ */

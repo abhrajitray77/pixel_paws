@@ -6,32 +6,34 @@ import logo from "../public/imgs/nekored.webp";
 import SeachBar from "./SeachBar";
 import { SidebarContext } from "@/utils/SidebarContext";
 /* import { SessionContext } from "@/utils/SessionContext"; */
-import { account, getSession } from "@/utils/appwrite";
+import { account, getSessionData } from "@/utils/appwrite";
 import { AppwriteException } from "appwrite";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
 /*   const { sessionData } = useContext(SessionContext); */
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
   const [session, setSession] = useState<any>(null);
+  const router = useRouter();
 
   const handleLogoClick = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleProfileClick = () => {
     const oAuthLogout = () => {
+      console.log("Logging out...")
       try {
-        account.deleteSession("current")
+        account.deleteSession("current");
+        console.log("Logged out!")
+        router.push("/");
       } catch (AppwriteException) {
         console.error("OAuth logout error:", AppwriteException);
       }
     };
-    oAuthLogout();
-  };
 
   useEffect (() => {
     ( async () => {
-    setSession(await getSession());
+    setSession(await getSessionData());
     })();
   }, []);
   
@@ -72,7 +74,7 @@ const Navbar = () => {
           </li>
           <li>
             <button
-              onClick={() => handleProfileClick}
+              onClick={() => oAuthLogout()}
               className="cursor-pointer hover:ring-4 rounded-full
               transition-all ring-red-500 duration-300 ease-in text-white"
               aria-label="Logout"
