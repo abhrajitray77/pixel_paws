@@ -1,4 +1,4 @@
-import { Client, Account, ID, Databases } from "appwrite";
+import { Client, Account, ID, Databases, Avatars } from "appwrite";
 
 export const client = new Client()
   .setEndpoint("https://cloud.appwrite.io/v1") // Your API Endpoint
@@ -6,6 +6,7 @@ export const client = new Client()
 
 export const account = new Account(client);
 export const database = new Databases(client);
+export const avatar = new Avatars(client);
 
 export const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!;
 export const userdataCol = process.env.NEXT_PUBLIC_APPWRITE_USERDATA_COLLECTION!;

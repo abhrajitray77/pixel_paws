@@ -6,7 +6,7 @@ import logo from "../public/imgs/nekored.webp";
 import SeachBar from "./SeachBar";
 import { SidebarContext } from "@/utils/SidebarContext";
 /* import { SessionContext } from "@/utils/SessionContext"; */
-import { account, getSessionData } from "@/utils/appwrite";
+import { account, avatar, getSessionData } from "@/utils/appwrite";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
 
@@ -81,15 +81,14 @@ const Navbar = () => {
               name="Logout"
               title="Logout"
             >
-              {session?.email!}
-{/*               <img
+              <img
                 className="rounded-full w-12 h-12"
-                src={`${sessionData.then((data) => data.)}`}
+                src={`${avatar.getInitials()}`}
                 alt="Profile"
                 width={50}
                 height={50}
                 loading="lazy"
-              /> */}
+              />
             </button>
           </li>
         </ul>
