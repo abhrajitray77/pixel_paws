@@ -2,7 +2,7 @@ import { Game } from "@/gameTypes";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
-/* import AddButton from "../AddButton"; */
+import AddButton from "../AddButton";
 
 type CarouselCardProps = {
   game: Game;
@@ -22,16 +22,18 @@ const CarouselCard = ({ game }: CarouselCardProps) => {
       className="block rounded-3xl h-max cursor-pointer 
       hover:scale-105 transition-all duration-300 ease-in-out
       "
-      onClick={() => {
-        router.push(`/game/${slug}`);
-      }}
       style={{
         backgroundImage: `url(${background_image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="flex ">
+      <div
+        className="flex "
+        onClick={() => {
+          router.push(`/game/${slug}`);
+        }}
+      >
         <Image
           src={background_image}
           alt={name}
@@ -44,14 +46,19 @@ const CarouselCard = ({ game }: CarouselCardProps) => {
         className="px-4 py-2 space-y-1 flex justify-between rounded-b-3xl
        backdrop-blur-sm backdrop-brightness-50 "
       >
-        <div className="text-sm font-medium text-gray-200 space-y-2">
+        <div
+          className="text-sm font-medium text-gray-200 space-y-2"
+          onClick={() => {
+            router.push(`/game/${slug}`);
+          }}
+        >
           <h3 className="font-extrabold text-sm">{name}</h3>
           <p className="">{releasedDate}</p>
         </div>
-{/*         <div className="flex">
+        <div className="flex">
           <AddButton collection="wishlist" gameId={id} gameName={name} />
-        </div> */}
-{/*         <div className="flex justify-between">
+        </div>
+        {/*         <div className="flex justify-between">
           {/*           <div className="text-sm font-medium text-gray-300">
             <p className="">{platformList}</p>
           </div> 

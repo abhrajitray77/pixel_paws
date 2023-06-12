@@ -4,6 +4,7 @@ import Grid from "@/components/Grid";
 import { Game } from "@/gameTypes";
 import { gameList } from "@/rawg";
 import getPrice from "@/rawg/getPrice";
+import { getMyLib, getWishlist } from "@/utils/appwrite";
 import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { PacmanLoader } from "react-spinners";
@@ -15,8 +16,10 @@ const NewR = () => {
 
   //function to load games
   useEffect(() => {
+    
     const loadGames = async () => {
       setLoading(true);
+      
       const response = await gameList({
         pageIndex: 1,
         page: pageNo,

@@ -5,7 +5,7 @@ import { Game } from "@/gameTypes";
 import { gameDetails, gameList } from "@/rawg";
 import { get } from "@/rawg/api";
 import getPrice from "@/rawg/getPrice";
-import { database, databaseId, mylibCol, userID } from "@/utils/appwrite";
+import { database, databaseId, getMyLib, myLibData, mylibCol, userID } from "@/utils/appwrite";
 import { Query } from "appwrite";
 import React, { useEffect, useState } from "react";
 
@@ -16,28 +16,20 @@ const MyLib = () => {
 
   //function to load games
   useEffect(() => {
+    getMyLib()
     let gameIds: number[] = [];
     let gameDetailsPromises: Promise<Game>[];
 
     const getGameIds = () => {
-      const searchPromise = database.listDocuments(
-        `${databaseId}`,
-        `${mylibCol}`,
-        [
-          Query.equal("user_id", userID)
-        ]
-      );
-      searchPromise.then(function (response) {
-        gameIds = response.documents.map((game) => game.game_id);
+        gameIds = myLibData?.map((game) => game.game_id);
         //getting game details for each game id
-        gameDetailsPromises = gameIds.map((gameId) =>
+        gameDetailsPromises = gameIds?.map((gameId) =>
           gameDetails({ id: gameId })
         );
         //setting games
         Promise.all(gameDetailsPromises).then((games) => {
           setGames(games);
         });
-      });
     };
     //TO-DO: temporary fix for reload userID undefined issue
     setTimeout(() => {
