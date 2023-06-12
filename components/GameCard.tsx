@@ -1,6 +1,6 @@
 import { Game } from "@/gameTypes";
 import Image from "next/image";
-import AddButton from "./AddButton";
+/* import AddButton from "./AddButton"; */
 import { useRouter } from "next/navigation";
 
 type GameCardProps = {
@@ -23,10 +23,10 @@ const GameCard = ({ game }: GameCardProps) => {
     }}>
       <Image src={background_image} alt={name} width={400} height={250} />
       <div className="p-2 py-4 space-y-2">
-        <div className="flex justify-between ">
+{/*         <div className="flex justify-between ">
           <AddButton collection="mylib" gameId={id} gameName={name} />
           <AddButton collection="wishlist" gameId={id} gameName={name} />
-        </div>
+        </div> */}
         <div className="flex justify-between">
 {/*           <div className="text-sm font-medium text-gray-300">
             <p className="">{platformList}</p>

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-"use client";
+/* "use client";
 import Grid from "@/components/Grid";
 import { Game } from "@/gameTypes";
 import { gameList } from "@/rawg";
@@ -61,11 +61,11 @@ const NewR = () => {
                     Load More
                   </button>
                 </div>
-              ) : (
+              ) : ( */
 /*                 <span className="text-gray-100 font-semibold my-2 flex justify-center ">
                   No more games found.
                 </span> */
-               <PacmanLoader className="flex mx-auto my-2" color="#ffa600" size={20} loading={loading} />
+/*                <PacmanLoader className="flex mx-auto my-2" color="#ffa600" size={20} loading={loading} />
               )}
             </div>
           ) : (
@@ -83,3 +83,4 @@ const NewR = () => {
 };
 
 export default NewR;
+ */

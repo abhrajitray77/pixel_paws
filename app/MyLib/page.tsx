@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 import GameCard from "@/components/GameCard";
 import Grid from "@/components/Grid";
 import { userID } from "@/components/SessionProvider";
@@ -61,3 +61,4 @@ const MyLib = () => {
 };
 
 export default MyLib;
+ */

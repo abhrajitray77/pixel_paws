@@ -1,11 +1,11 @@
-import { database, databaseId, mylibCol, wishlistCol } from "@/utils/appwrite";
+/* import { database, databaseId, mylibCol, wishlistCol } from "@/utils/appwrite";
 import {
   CheckCircleIcon,
   HeartIcon,
 } from "@heroicons/react/24/solid";
 import { ID, Query } from "appwrite";
 import React, { useEffect, useState } from "react";
-import { userID } from "./SessionProvider";
+import { userID } from "@/utils/SessionContext";
 import { toast } from "react-hot-toast";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
@@ -132,3 +132,4 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
 };
 
 export default AddButton;
+ */
