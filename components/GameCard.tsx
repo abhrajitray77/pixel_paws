@@ -1,45 +1,70 @@
 import { Game } from "@/gameTypes";
 import Image from "next/image";
-/* import AddButton from "./AddButton"; */
 import { useRouter } from "next/navigation";
+import React from "react";
+import AddButton from "./AddButton";
 
-type GameCardProps = {
+type CarouselCardProps = {
   game: Game;
 };
 
-const GameCard = ({ game }: GameCardProps) => {
-  const { slug, id, name, price, released, background_image, platforms, genres } =
+const CarouselCard = ({ game }: CarouselCardProps) => {
+  const { slug, id, name, released, background_image, platforms, genres } =
     game;
 
   const releasedDate = new Date(released).toLocaleDateString();
   const genreList = genres.map((genre) => genre.name).join(", ");
-  const platformList = platforms.map((platform) => platform.platform.name).join(", ");
+  const platformList = platforms
+    .map((platform) => platform.platform.slug)
+    .join(", ");
   const router = useRouter();
 
   return (
-    <div className="bg-[#180000] block rounded-b-3xl h-min cursor-pointer"
-    onClick={() => {
-      router.push(`/game/${slug}`);
-    }}>
-      <Image src={background_image} alt={name} width={400} height={250} />
-      <div className="p-2 py-4 space-y-2">
-{/*         <div className="flex justify-between ">
+    <div
+      className="block rounded-3xl h-max cursor-pointer 
+      hover:scale-105 transition-all duration-300 ease-in-out
+      "
+      onClick={() => {
+        router.push(`/game/${slug}`);
+      }}
+      style={{
+        backgroundImage: `url(${background_image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="flex ">
+        <Image
+          src={background_image}
+          alt={name}
+          width={800}
+          height={400}
+          className="rounded-t-3xl"
+        />
+      </div>
+      <div
+        className="px-4 py-2 rounded-b-3xl space-y-2
+       backdrop-blur-sm backdrop-brightness-50 "
+      >
+        <div className="flex justify-between">
           <AddButton collection="mylib" gameId={id} gameName={name} />
           <AddButton collection="wishlist" gameId={id} gameName={name} />
-        </div> */}
-        <div className="flex justify-between">
-{/*           <div className="text-sm font-medium text-gray-300">
-            <p className="">{platformList}</p>
-          </div> */}
         </div>
-        <div className="text-sm font-medium text-gray-300 space-y-2">
-          <h3 className="font-extrabold text-md">{name}</h3>
-          <p className="">{releasedDate}</p>
-          <p className="">{genreList}</p>
+
+
+        <div className="space-y-1 flex justify-between">
+          <div className="text-sm font-medium text-gray-200 space-y-1">
+            <h3 className="font-extrabold text-sm">{name}</h3>
+            <p className="">{releasedDate}</p>
+            <p className="text-xs">{genreList}</p>
+          </div>
+          {/*         <div className="text-sm font-medium text-gray-300">
+            <p className="">{platformList}</p>
+        </div>  */}
         </div>
       </div>
     </div>
   );
 };
 
-export default GameCard;
+export default CarouselCard;

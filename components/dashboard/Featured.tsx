@@ -12,6 +12,7 @@ const getSpotlightItems = (items: unknown[], length: number) => {
     if (!randomItems.includes(items[index])) {
       randomItems.push(items[index]);
     }
+    console.log("random items running", randomItems);
   }
   return randomItems;
 };
@@ -20,10 +21,12 @@ const Featured = () => {
   const [games, setGames] = useState<Game[] | null>(null);
 
   useEffect(() => {
+    console.log("featured");
     const loadGames = async () => {
-      const response = await gameList({ pageIndex: 0, page: 1, pageSize: 10 });
+      const pageNo = Math.floor(Math.random() * 3) + 1;
+      const response = await gameList({ pageIndex: 0, page: pageNo, pageSize: 30 });
       let { results } = response;
-      results = results.filter((game) => game.metacritic > 50);
+      results = results.filter((game) => game.metacritic > 40);
       return results;
     };
     //setting games to the results of loadGames
