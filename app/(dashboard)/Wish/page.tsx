@@ -2,7 +2,7 @@
 import Grid from '@/components/Grid';
 import { Game } from '@/gameTypes';
 import { gameDetails } from '@/rawg';
-import { database, databaseId, wishlistCol } from '@/utils/appwrite';
+import { database, databaseId, getSessionData, userID, wishlistCol } from '@/utils/appwrite';
 import { Query } from 'appwrite';
 import React, { useEffect, useState } from 'react'
 
@@ -14,11 +14,13 @@ const Wish = () => {
   useEffect(() => {
     let gameIds: number[] = [];
     let gameDetailsPromises: Promise<Game>[];
-  
+
   const getGameIds = () => {
     const searchPromise = database.listDocuments(
       `${databaseId}`,
       `${wishlistCol}`,
+      [Query.equal("user_id", userID )]
+
     );
     searchPromise.then(function (response) {
       // eslint-disable-next-line react-hooks/exhaustive-deps

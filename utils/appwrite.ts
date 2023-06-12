@@ -12,12 +12,14 @@ export const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!;
 export const userdataCol = process.env.NEXT_PUBLIC_APPWRITE_USERDATA_COLLECTION!;
 export const mylibCol = process.env.NEXT_PUBLIC_APPWRITE_MYLIB_COLLECTION!;
 export const wishlistCol = process.env.NEXT_PUBLIC_APPWRITE_WISHLIST_COLLECTION!;
+export let userID: string;
 
 //fetching account data
 export const getSessionData = async () => {
   try {
     const data = await account.get()
     console.log("Session data:", data)
+    userID = data.$id;
     return data;
   } catch (error: unknown) {
     console.error("Error getting session data:", error);
