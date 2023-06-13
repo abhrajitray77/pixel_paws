@@ -7,7 +7,7 @@ import {
   GiftIcon,
   SparklesIcon,
   HomeIcon,
-} from "@heroicons/react/24/outline";
+} from "@heroicons/react/24/solid";
 import { SidebarContext } from "@/utils/SidebarContext";
 import SeachBar from "./SeachBar";
 

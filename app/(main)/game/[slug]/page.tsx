@@ -51,6 +51,7 @@ const GamePage = ({ params: { slug } }: GamePageProps) => {
             gameRating={game.metacritic}
             gameReleaseDate={game.released}
             gameGenres={game.genres}
+            gameId={game.id}
           />
           {screenshots?.results ? (
           <Info 

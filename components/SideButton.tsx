@@ -13,7 +13,7 @@ const SideButton = ({ name, children, path }: SideButtonProps) => {
     <>
       <Link href={path} scroll={false}>
         <button
-          className="text-cyan-600 hover:text-cyan-400 px-4 py-2
+          className="text-indigo-200 hover:text-indigo-300 px-4 py-2
         flex space-x-4 transition-all duration-300 
         ease-in-out hover:scale-105 text-sm items-center font-semibold"
         >
