@@ -29,7 +29,6 @@ export let userID: string;
 export const getSessionData = async () => {
   try {
     const data = await account.get();
-    console.log("Session data:", data);
     userID = data.$id;
     return data;
   } catch (error: unknown) {
