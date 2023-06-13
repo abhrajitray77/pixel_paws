@@ -5,6 +5,7 @@ const nextConfig = {
   },
   images: {
     domains: ["cdn.discordapp.com", "media.rawg.io"],
+    unoptimized: true,
   },
 };
 
