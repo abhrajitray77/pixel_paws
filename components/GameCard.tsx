@@ -37,12 +37,16 @@ const GameCard = ({ game }: GameCardProps) => {
         }}
       >
         <Image
-          src={background_image}
+          unoptimized
+          src={background_image ? background_image : "https://via.placeholder.com/800x400?text=Placeholder+Image"}
           alt={name}
           width={800}
           height={400}
           placeholder="blur"
-          blurDataURL={background_image}
+          blurDataURL={
+            background_image ||
+            "https://via.placeholder.com/800x400?text=Placeholder+Image"
+          }
           className="rounded-t-3xl"
         />
       </div>
@@ -52,11 +56,7 @@ const GameCard = ({ game }: GameCardProps) => {
       >
         <div className="flex justify-between">
           <AddButton collection="mylib" gameId={id} gameName={name} />
-          <AddButton
-            collection="wishlist"
-            gameId={id}
-            gameName={name}
-          />
+          <AddButton collection="wishlist" gameId={id} gameName={name} />
         </div>
 
         <div
