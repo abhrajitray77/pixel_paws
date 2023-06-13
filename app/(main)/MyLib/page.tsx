@@ -2,15 +2,18 @@
 import Grid from "@/components/Grid";
 import { Game } from "@/gameTypes";
 import { gameDetails, gameList } from "@/rawg";
+import { GameAddedContext } from "@/utils/GameAddedContext";
 
 import { database, databaseId, mylibCol, userID } from "@/utils/appwrite";
 import { Query } from "appwrite";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PacmanLoader } from "react-spinners";
 
 const MyLib = () => {
   const [games, setGames] = useState<Game[] | null>(null);
   const [loading, setLoading] = useState(true); //TO DO: add loading animation react spinner
+  const { gameAdded } = useContext(GameAddedContext);
+
 
 
   //function to load games
@@ -40,7 +43,7 @@ const MyLib = () => {
     setTimeout(() => {
       getGameIds();
     }, 1000);
-  }, []);
+  }, [gameAdded]);
 
   return (
     <div className="space-y-4">
@@ -49,7 +52,7 @@ const MyLib = () => {
         games.length ? (
           <Grid games={games} />
         ) : (
-          <span className="text-white">No games found.</span>
+          <div className="text-white mt-10">No games found.</div>
         )
       ) : (
         <div className="flex justify-center items-center">

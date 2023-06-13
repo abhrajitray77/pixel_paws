@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { SidebarContext } from "@/utils/SidebarContext";
 import SeachBar from "./SeachBar";
+import Link from "next/link";
 
 //TODO: add animated colour buttons on hover?
 
@@ -18,7 +19,8 @@ const Sidebar = () => {
 
   return (
     <div className="">
-      <nav className="hidden md:flex md:flex-col h-screen py-4 px-5 space-y-2">
+      <nav className="hidden md:flex md:flex-col h-screen py-4 px-5 space-y-2
+      ">
         <div className="">
           <SideButton name="Dashboard" path="/dashboard">
             <HomeIcon className="w-6 h-6" />
@@ -44,6 +46,31 @@ const Sidebar = () => {
             <FireIcon className="w-6 h-6" />
           </SideButton>
         </div>
+        <div className="md:flex flex-col space-x-2 hidden font-bold
+        items-center pt-20">
+            <h1 className="text-2xl text-indigo-300">PixelPaws</h1>
+            <div className="text-xs text-gray-600 flex space-x-1">
+              <Link href="https://rawg.io/" target="_blank">
+              <h1
+                className="text-gray-600 hover:text-gray-100 transition
+            duration-300 hover:scale-105 cursor-pointer"
+              >
+                RAWG
+              </h1>
+              </Link>
+              <h2>
+              x
+              </h2>
+              <Link href="https://appwrite.io/" target="_blank">
+              <h1
+                className="text-gray-600 hover:text-red-500 transition
+            duration-300 hover:scale-105 cursor-pointer"
+              >
+                Appwrite
+              </h1>
+              </Link>
+            </div>
+          </div>
       </nav>
 
       {/* mobile nav  */}

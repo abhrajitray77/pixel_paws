@@ -8,6 +8,7 @@ import { SidebarContext } from "@/utils/SidebarContext";
 import { account, avatar, getSessionData } from "@/utils/appwrite";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Navbar = () => {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
@@ -18,25 +19,22 @@ const Navbar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-    const oAuthLogout = () => {
-      console.log("Logging out...")
-      try {
-        account.deleteSession("current");
-        console.log("Logged out!")
-        router.push("/");
-      } catch (AppwriteException) {
-        console.error("OAuth logout error:", AppwriteException);
-      }
-    };
+  const oAuthLogout = () => {
+    console.log("Logging out...");
+    try {
+      account.deleteSession("current");
+      console.log("Logged out!");
+      router.push("/");
+    } catch (AppwriteException) {
+      console.error("OAuth logout error:", AppwriteException);
+    }
+  };
 
-  useEffect (() => {
-
-    ( async () => {
-    setSession(await getSessionData());
+  useEffect(() => {
+    (async () => {
+      setSession(await getSessionData());
     })();
   }, []);
-  
-    
 
   return (
     <nav className="flex flex-col space-y-1/2 bg-black">
@@ -55,13 +53,28 @@ const Navbar = () => {
             <SeachBar />
           </div>
           <div className="flex flex-col space-x-2 md:hidden font-bold">
-            <h1 className="text-2xl text-indigo-300">
-              PixelPaws
-            </h1>
-            <h1 className="text-gray-600 hover:text-red-500 transition
-            duration-300 hover:scale-105 text-xs cursor-pointer">
-              RAWG x Appwrite
-            </h1>
+            <h1 className="text-2xl text-indigo-300">PixelPaws</h1>
+            <div className="text-xs text-gray-600 flex space-x-1">
+              <Link href="https://rawg.io/" target="_blank">
+              <h1
+                className="text-gray-600 hover:text-gray-100 transition
+            duration-300 hover:scale-105 cursor-pointer"
+              >
+                RAWG
+              </h1>
+              </Link>
+              <h2>
+              x
+              </h2>
+              <Link href="https://appwrite.io/" target="_blank">
+              <h1
+                className="text-gray-600 hover:text-red-500 transition
+            duration-300 hover:scale-105 cursor-pointer"
+              >
+                Appwrite
+              </h1>
+              </Link>
+            </div>
           </div>
         </div>
 
