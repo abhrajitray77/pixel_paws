@@ -3,7 +3,7 @@ import Grid from '@/components/Grid';
 import { Game } from '@/gameTypes';
 import { gameList } from '@/rawg';
 import getPrice from '@/rawg/getPrice';
-import { getMyLib, getWishlist } from '@/utils/appwrite';
+
 import { get } from 'http';
 import React, { useEffect, useState } from 'react'
 
@@ -13,8 +13,7 @@ const Mpop = () => {
 
   //function to load games
   useEffect(() => {
-    getMyLib()
-    getWishlist()
+
     const loadGames = async () => {
       const response = await gameList({ pageIndex: 0, page: 1, pageSize: 10 });
       let { results } = response;

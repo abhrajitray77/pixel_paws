@@ -7,7 +7,7 @@ import { BsDiscord } from "react-icons/bs";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { ID } from "appwrite";
+import { AppwriteException, ID } from "appwrite";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({
@@ -29,8 +29,9 @@ const Login = () => {
     try {
       account.createOAuth2Session(
         "discord",
-        "https://pixelpaws.vercel.app/dashboard"
+        "https://pixelpaws.vercel.app/"
       );
+      router.push("/dashboard");
     } catch (error) {
       console.error("OAuth login error:", error);
     }
@@ -46,22 +47,25 @@ const Login = () => {
         if (signupDetails.password !== signupDetails.confirmPassword) {
           toast.error("Passwords do not match!");
         }
+        if (signupDetails.password.length < 8) {
+          toast.error("Password must be at least 8 characters long!");
+        }
         await account.create(
           ID.unique(),
           signupDetails.email,
           signupDetails.password,
           signupDetails.name
         );
-        console.log("Signed up successfully!");
         router.push("/dashboard");
+        toast.success("Account created successfully! Login with your credentials.");
       } else {
         //login
         await account.createEmailSession(userDetails.email, userDetails.password);
         console.log("Logged in via email!");
         router.push("/dashboard");
       }
-    } catch (error) {
-      console.error("Email login error:", error);
+    } catch (AppwriteException: any) {
+      toast.error(AppwriteException.type);
     }
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

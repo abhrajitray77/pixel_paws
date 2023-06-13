@@ -30,6 +30,7 @@ const Navbar = () => {
     };
 
   useEffect (() => {
+
     ( async () => {
     setSession(await getSessionData());
     })();

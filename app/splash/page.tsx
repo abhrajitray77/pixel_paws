@@ -15,7 +15,7 @@ function Landing() {
       .then((data) => {
         if (data) {
           setLoggedIn(true);
-          router.push("/splash");
+          router.push("/dashboard");
         } else {
           setLoggedIn(false);
         }
@@ -27,12 +27,6 @@ function Landing() {
   return (
     <>
       {!loggedIn && (
-        <div className="text-white">
-          <h1>Landing Page</h1>
-          <Login />
-        </div>
-      )}
-      {loggedIn && (
       <div className="h-screen flex justify-center items-center">
       <PacmanLoader color="#ffa600" size={20} loading={true} />
       </div>

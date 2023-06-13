@@ -1,5 +1,5 @@
 "use client";
-import { account, getMyLib, getSessionData, getWishlist } from "@/utils/appwrite";
+import { account, getSessionData} from "@/utils/appwrite";
 import "../globals.css";
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
@@ -28,8 +28,7 @@ export default function MainLayout({
       .catch((error) => {
         console.log(error);
       });
-      getMyLib()
-      getWishlist()
+
   }, []);
   return (
     <>

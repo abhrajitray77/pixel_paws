@@ -1,9 +1,6 @@
 
 import Featured from "@/components/dashboard/Featured";
 import Upcoming from "@/components/dashboard/Upcoming";
-import { getMyLib, getWishlist } from "@/utils/appwrite";
-import { useEffect } from "react";
-
 function Home() {
 
   return (
