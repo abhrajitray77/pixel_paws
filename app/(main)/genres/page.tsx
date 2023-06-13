@@ -9,17 +9,23 @@ const Genre = () => {
   const [genre, setGenre] = useState<GameDataType[] | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const loadGenre = async () => {
+    setLoading(true);
+    const response = await genreList();
+    let { results } = response;
+    return results || [];
+  };
+
   useEffect(() => {
-    const getGenre = async () => {
+    (async () => {
       try {
-        const newGenre = await genreList();
-        setGenre(newGenre?.results!);
+        const newGenre = await loadGenre();
+        setGenre(newGenre || []);
         setLoading(false);
       } catch (error) {
-        console.error("Error loading genre:", error);
+        console.error("Error loading games:", error);
       }
-    };
-    getGenre();
+    })();
   }, []);
   return (
     <div className="relative space-y-8">
