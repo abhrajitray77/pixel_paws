@@ -1,15 +1,12 @@
-'use client'
-import { database, databaseId, getMyLib, getWishlist, myLibData, mylibCol, userID, wishlistCol, wishlistData } from "@/utils/appwrite";
+import { database, databaseId, mylibCol, userID, wishlistCol } from "@/utils/appwrite";
 import {
   CheckCircleIcon,
   HeartIcon,
 } from "@heroicons/react/24/solid";
 import { ID, Query } from "appwrite";
 import React, { useEffect, useState } from "react";
-
 import { toast } from "react-hot-toast";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
-import { get } from "http";
 
 type AddButtonProps = {
   collection: string;
@@ -20,29 +17,40 @@ type AddButtonProps = {
 const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
   //checking if game is present in wishlist and mylib
   const [gamePresent, setGamePresent] = useState<boolean>(false);
+  const [gameAdded, setGameAdded] = useState<boolean>(false);
 
   useEffect(() => {
     const checkGame = () => {
       if (collection === "mylib") {
-        const result = myLibData?.find((game) => game.game_id === gameId);
-        if (result) {
-          setGamePresent(true);
-        }
-        else {
-          setGamePresent(false);
-        }
+        const searchPromise = database.listDocuments(
+          `${databaseId}`,
+          `${mylibCol}`,
+          [Query.equal("user_id", userID), Query.equal("game_id", gameId)]
+        );
+        searchPromise.then(function (response) {
+          if (response.documents.length === 0) {
+            setGamePresent(false);
+          } else {
+            setGamePresent(true);
+          }
+        });
       } else if (collection === "wishlist") {
-        const result = wishlistData?.find((game) => game.game_id === gameId);
-        if (result) {
-          setGamePresent(true);
-        }
-        else {
-          setGamePresent(false);
-        }
+        const searchPromise = database.listDocuments(
+          `${databaseId}`,
+          `${wishlistCol}`,
+          [Query.equal("user_id", userID), Query.equal("game_id", gameId)]
+        );
+        searchPromise.then(function (response) {
+          if (response.documents.length === 0) {
+            setGamePresent(false);
+          } else {
+            setGamePresent(true);
+          }
+        });
       }
     };
     checkGame();
-  }, [collection, gameId]);
+  }, [collection, gameId, gameName, gameAdded]);
 
   const addToCollection = () => {
     if (collection === "mylib") {
@@ -59,9 +67,7 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
       createPromise.then(
         function (response) {
           toast.success("Added to Library!");
-          setGamePresent(true)
-          //updating mylib
-          getMyLib()
+          setGameAdded(true);
         },
         function (error) {
           console.log(error);
@@ -81,9 +87,7 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
       createPromise.then(
         function (response) {
           toast.success("Added to Wishlist!");
-          setGamePresent(true)
-          //updating wishlist
-          getWishlist()
+          setGameAdded(true);
         },
         function (error) {
           console.log(error);
