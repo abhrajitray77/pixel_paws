@@ -6,6 +6,7 @@ interface Params {
   page?: number,
   dates?: string,
   ordering?: string,
+  genreSlug?: string,
   pageIndex: number,
 }
 
@@ -17,11 +18,15 @@ const links = [
   {
     name: 'new releases',
     path: 'lists/main?',
+  },
+  {
+    name: 'genreGames',
+    path: `discover=true`,
   }
 ]
 
 function gameList(params?: Params): Promise<ResponseSchema<Game>> {
-  return get<ResponseSchema<Game>>(`games/${links[params?.pageIndex!].path}&page-size=${params?.pageSize}&ordering=${params?.ordering}&page=${params?.page}`);
+  return get<ResponseSchema<Game>>(`games/${links[params?.pageIndex!].path}&page-size=${params?.pageSize}&ordering=${params?.ordering}&page=${params?.page}&genres=${params?.genreSlug}`);
 }
 
 export { gameList };
