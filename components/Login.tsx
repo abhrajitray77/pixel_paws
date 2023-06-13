@@ -85,7 +85,7 @@ const Login = () => {
       );
       toast.success("Please check your email for password reset instructions.");
     } catch (AppwriteException: any) {
-      toast.error(AppwriteException.description);
+      console.error(AppwriteException);
     }
   };
 
@@ -256,22 +256,26 @@ const Login = () => {
       </div>
 
       {isPasswordReset && (
-        <div className="fixed top-0 left-0 w-screen h-screen bg-gray-200 bg-opacity-90 flex items-center justify-center">
+        <div className="fixed top-0 left-0 w-screen h-screen bg-gray-800/20 bg-opacity-90 flex items-center justify-center">
           <div className="bg-white rounded-lg shadow-lg p-8">
             <h1 className="text-2xl font-bold text-gray-900">Forgot your password?</h1>
             <form className="flex flex-col space-y-2 mt-4" onSubmit={forgotPassword}>
               <input
-                className="px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                className="px-4 py-2 rounded-lg shadow-lg focus:outline-none 
+                focus:ring-2 focus:ring-red-600 text-gray-900"
                 type="email"
                 placeholder="Enter your email"
                 name="email"
                 value={userDetails.email}
                 onChange={handleInputChange}
               />
-              <button className="px-6 py-3 bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110 transition-all duration-300 ease-in-out font-semibold">
+              <button className="px-6 py-3 bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110 transition-all duration-300 ease-in-out
+               font-semibold"
+               type="submit">
                 Send E-mail
               </button>
               <button
+                type="button"
                 className="text-gray-700 font-semibold my-4"
                 onClick={() => setIsPasswordReset(false)}
               >

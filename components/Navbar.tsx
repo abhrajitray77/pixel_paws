@@ -9,6 +9,7 @@ import { account, avatar, getSessionData } from "@/utils/appwrite";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ImExit } from "react-icons/im";
 
 const Navbar = () => {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
@@ -87,20 +88,12 @@ const Navbar = () => {
           <li>
             <button
               onClick={() => oAuthLogout()}
-              className="cursor-pointer hover:ring-4 rounded-full
-              transition-all ring-red-500 duration-300 ease-in text-white"
+              className="cursor-pointer"
               aria-label="Logout"
               name="Logout"
               title="Logout"
             >
-              <img
-                className="rounded-full w-12 h-12"
-                src={`${avatar.getInitials()}`}
-                alt="Profile"
-                width={50}
-                height={50}
-                loading="lazy"
-              />
+              <ImExit color="#e6edff" size={30} />
             </button>
           </li>
         </ul>
