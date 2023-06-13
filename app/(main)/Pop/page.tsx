@@ -6,6 +6,7 @@ import getPrice from '@/rawg/getPrice';
 
 import { get } from 'http';
 import React, { useEffect, useState } from 'react'
+import { PacmanLoader } from 'react-spinners';
 
 const Mpop = () => {
   const [games, setGames] = useState<Game[] | null>(null);
@@ -41,7 +42,9 @@ const Mpop = () => {
           <span className="NoGames">No games found.</span>
         )
       ) : (
-        <div>Loading...</div>
+        <div className=" flex justify-center items-center">
+          <PacmanLoader color="#ffa600" size={20} loading={true} />
+        </div>
       )}
     </div>
   );

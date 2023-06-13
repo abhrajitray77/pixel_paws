@@ -41,6 +41,8 @@ const GameCard = ({ game }: GameCardProps) => {
           alt={name}
           width={800}
           height={400}
+          placeholder="blur"
+          blurDataURL={background_image}
           className="rounded-t-3xl"
         />
       </div>
