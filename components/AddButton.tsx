@@ -66,7 +66,7 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
       }
     };
     checkGame();
-  }, [collection, gameId, gameName]);
+  }, [collection, gameId, gameName, setGameAdded]);
 
   const addToCollection = () => {
     if (collection === "mylib") {
@@ -83,6 +83,7 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
       createPromise.then(
         function (response) {
           toast.success("Added to Library!");
+          setGamePresent(true);
           setGameAdded(true);
         },
         function (error) {
@@ -103,6 +104,7 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
       createPromise.then(
         function (response) {
           toast.success("Added to Wishlist!");
+          setGamePresent(true);
           setGameAdded(true);
         },
         function (error) {

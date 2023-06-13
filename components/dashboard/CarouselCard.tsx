@@ -40,6 +40,8 @@ const CarouselCard = ({ game }: CarouselCardProps) => {
           width={800}
           height={400}
           className="rounded-t-3xl"
+          placeholder="blur"
+          blurDataURL={background_image}
         />
       </div>
       <div
