@@ -30,7 +30,6 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
 
   useEffect(() => {
     const checkGame = () => {
-      console.log("checking game");
       if (collection === "mylib") {
         const searchPromise = database.listDocuments(
           `${databaseId}`,
@@ -64,7 +63,8 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
       }
     };
     checkGame();
-  }, [collection, gameId, gameName, setGameAdded]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [collection, gameId, gameName, gameAdded]);
 
   const addToCollection = () => {
     if (collection === "mylib") {

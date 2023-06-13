@@ -93,12 +93,13 @@ const Navbar = () => {
               name="Logout"
               title="Logout"
             >
-              <ImExit color="#e6edff" size={30} />
+              <ImExit color="#a1bcc7" size={30} />
             </button>
           </li>
         </ul>
       </div>
-      <span className="bg-red-600 h-1.5"></span>
+      <span className="bg-gradient-to-r from-red-600 via-red-400
+      to-red-600  blur-[1px] h-1"></span>
     </nav>
   );
 };
