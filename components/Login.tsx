@@ -85,7 +85,7 @@ const Login = () => {
       );
       toast.success("Please check your email for password reset instructions.");
     } catch (AppwriteException: any) {
-      console.error(AppwriteException);
+      toast.error(AppwriteException);
     }
   };
 
@@ -158,12 +158,16 @@ const Login = () => {
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </div>
             </div>
-            <button className="px-6 py-3 bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110 transition-all duration-300 ease-in-out font-semibold">
+            <button className="px-6 py-3 bg-[#5865f2] text-white rounded-lg 
+            shadow-lg hover:scale-110 transition-all duration-300 ease-in-out font-semibold"
+            type="submit"
+            >
               Login
             </button>
             <button
               className="text-red-600 font-semibold my-4"
               onClick={() => setIsPasswordReset(true)}
+              type="button"
             >
               Forgot your password?
             </button>
@@ -270,7 +274,8 @@ const Login = () => {
               />
               <button className="px-6 py-3 bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110 transition-all duration-300 ease-in-out
                font-semibold"
-               type="submit">
+               type="submit"
+               >
                 Send E-mail
               </button>
               <button
