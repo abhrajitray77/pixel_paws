@@ -6,6 +6,7 @@ import { gameDetails, gameList } from "@/rawg";
 import { database, databaseId, mylibCol, userID } from "@/utils/appwrite";
 import { Query } from "appwrite";
 import React, { useEffect, useState } from "react";
+import { PacmanLoader } from "react-spinners";
 
 const MyLib = () => {
   const [games, setGames] = useState<Game[] | null>(null);
@@ -51,7 +52,9 @@ const MyLib = () => {
           <span className="text-white">No games found.</span>
         )
       ) : (
-        <div className="text-white">Loading...</div>
+        <div className="flex justify-center items-center">
+          <PacmanLoader color="#ffa600" size={20} loading={true} />
+        </div>
       )}
     </div>
   );
