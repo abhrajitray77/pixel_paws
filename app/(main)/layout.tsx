@@ -1,6 +1,6 @@
 "use client";
 import { account, getSessionData } from "@/utils/appwrite";
-import "../globals.css";
+import "../globals.css"
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
 import { SidebarProvider } from "@/utils/SidebarContext";

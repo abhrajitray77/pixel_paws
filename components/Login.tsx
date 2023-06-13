@@ -23,6 +23,7 @@ const Login = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const [isPasswordReset, setIsPasswordReset] = useState(false);
 
   //For discord OAuth
   const oAuthLogin = () => {
@@ -36,13 +37,13 @@ const Login = () => {
     }
   };
 
-  //For standard email login
+  // For standard email login
   const loginUser = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     try {
       if (isSignup) {
-        //signup
+        // signup
         if (signupDetails.password !== signupDetails.confirmPassword) {
           toast.error("Passwords do not match!");
         }
@@ -56,10 +57,15 @@ const Login = () => {
           signupDetails.name
         );
         router.push("/dashboard");
-        toast.success("Account created successfully! Login with your credentials.");
+        toast.success(
+          "Account created successfully! Login with your credentials."
+        );
       } else {
-        //login
-        await account.createEmailSession(userDetails.email, userDetails.password);
+        // login
+        await account.createEmailSession(
+          userDetails.email,
+          userDetails.password
+        );
         console.log("Logged in via email!");
         router.push("/dashboard");
       }
@@ -67,6 +73,22 @@ const Login = () => {
       toast.error(AppwriteException.type);
     }
   };
+
+  // For forgot password functionality
+  const forgotPassword = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      await account.createRecovery(
+        userDetails.email,
+        "https://pixelpaws.vercel.app/resetPass"
+      );
+      toast.success("Please check your email for password reset instructions.");
+    } catch (AppwriteException: any) {
+      toast.error(AppwriteException.description);
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -94,10 +116,7 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div
-        className="flex flex-col mx-auto items-center space-y-6 bg-red-100 p-8
-                rounded-3xl"
-      >
+      <div className="flex flex-col mx-auto items-center space-y-6 bg-red-100 p-8 rounded-3xl">
         <h1 className="text-6xl font-extrabold text-red-600 drop-shadow-lg">
           PixelPaws
         </h1>
@@ -110,9 +129,12 @@ const Login = () => {
             width={400}
           />
         </div>
-        {/* email and password login */}
+        {/* Email and password login */}
         {!isSignup ? (
-          <form className="flex flex-col text-indigo-950 space-y-4" onSubmit={loginUser}>
+          <form
+            className="flex flex-col text-indigo-950 space-y-4"
+            onSubmit={loginUser}
+          >
             <input
               className="px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-red-600"
               type="email"
@@ -130,19 +152,28 @@ const Login = () => {
                 value={userDetails.password}
                 onChange={handleInputChange}
               />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-4 cursor-pointer" onClick={togglePasswordVisibility}>
+              <div
+                className="absolute inset-y-0 right-0 flex items-center pr-4 cursor-pointer"
+                onClick={togglePasswordVisibility}
+              >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </div>
             </div>
-            <button
-              className="px-6 py-3 bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110
-                        transition-all duration-300 ease-in-out font-semibold"
-            >
+            <button className="px-6 py-3 bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110 transition-all duration-300 ease-in-out font-semibold">
               Login
+            </button>
+            <button
+              className="text-red-600 font-semibold my-4"
+              onClick={() => setIsPasswordReset(true)}
+            >
+              Forgot your password?
             </button>
           </form>
         ) : (
-          <form className="flex flex-col text-indigo-950 space-y-4" onSubmit={loginUser}>
+          <form
+            className="flex flex-col text-indigo-950 space-y-4"
+            onSubmit={loginUser}
+          >
             <input
               className="px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-red-600"
               type="text"
@@ -168,7 +199,10 @@ const Login = () => {
                 value={signupDetails.password}
                 onChange={handleInputChange}
               />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-4 cursor-pointer" onClick={togglePasswordVisibility}>
+              <div
+                className="absolute inset-y-0 right-0 flex items-center pr-4 cursor-pointer"
+                onClick={togglePasswordVisibility}
+              >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </div>
             </div>
@@ -180,10 +214,7 @@ const Login = () => {
               value={signupDetails.confirmPassword}
               onChange={handleInputChange}
             />
-            <button
-              className="px-6 py-3 bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110
-                        transition-all duration-300 ease-in-out font-semibold"
-            >
+            <button className="px-6 py-3 bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110 transition-all duration-300 ease-in-out font-semibold">
               Sign up
             </button>
           </form>
@@ -195,8 +226,7 @@ const Login = () => {
               <>
                 Already have an account?{" "}
                 <span
-                  className="text-red-600 hover:text-red-500 transition
-                        duration-300 hover:scale-105 cursor-pointer"
+                  className="text-red-600 hover:text-red-500 transition duration-300 hover:scale-105 cursor-pointer"
                   onClick={toggleIsSignup}
                 >
                   Login
@@ -206,8 +236,7 @@ const Login = () => {
               <>
                 Don&apos;t have an account?{" "}
                 <span
-                  className="text-red-600 hover:text-red-500 transition
-                        duration-300 hover:scale-105 cursor-pointer"
+                  className="text-red-600 hover:text-red-500 transition duration-300 hover:scale-105 cursor-pointer"
                   onClick={toggleIsSignup}
                 >
                   Sign up
@@ -218,14 +247,40 @@ const Login = () => {
         </div>
 
         <button
-          className="px-6 py-3 flex bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110
-                           transition-all duration-300 ease-in-out font-semibold items-center justify-between space-x-2 mt-4"
+          className="px-6 py-3 flex bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110 transition-all duration-300 ease-in-out font-semibold items-center justify-between space-x-2 mt-4"
           onClick={() => oAuthLogin()}
         >
           <BsDiscord />
           <h1>Login with Discord</h1>
         </button>
       </div>
+
+      {isPasswordReset && (
+        <div className="fixed top-0 left-0 w-screen h-screen bg-gray-200 bg-opacity-90 flex items-center justify-center">
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <h1 className="text-2xl font-bold text-gray-900">Forgot your password?</h1>
+            <form className="flex flex-col space-y-2 mt-4" onSubmit={forgotPassword}>
+              <input
+                className="px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                type="email"
+                placeholder="Enter your email"
+                name="email"
+                value={userDetails.email}
+                onChange={handleInputChange}
+              />
+              <button className="px-6 py-3 bg-[#5865f2] text-white rounded-lg shadow-lg hover:scale-110 transition-all duration-300 ease-in-out font-semibold">
+                Send E-mail
+              </button>
+              <button
+                className="text-gray-700 font-semibold my-4"
+                onClick={() => setIsPasswordReset(false)}
+              >
+                Back to Login
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

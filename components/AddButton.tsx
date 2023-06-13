@@ -7,7 +7,6 @@ import {
   wishlistCol,
 } from "@/utils/appwrite";
 import {
-  CheckCircleIcon,
   HeartIcon,
   MinusCircleIcon,
 } from "@heroicons/react/24/solid";
@@ -15,7 +14,6 @@ import { ID, Query } from "appwrite";
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
-import { BsHeartbreakFill } from "react-icons/bs";
 import { GameAddedContext, GameAddedContextType } from "@/utils/GameAddedContext";
 
 type AddButtonProps = {
@@ -169,7 +167,7 @@ const AddButton = ({ collection, gameId, gameName }: AddButtonProps) => {
         )
       ) : collection === "wishlist" ? (
         gamePresent ? (
-          <BsHeartbreakFill
+          <HeartIcon
             className="h-6 w-6 text-red-500  cursor-pointer
             hover:scale-110 transition-transform duration-300 ease-in-out"
             onClick={removeFromCollection}
