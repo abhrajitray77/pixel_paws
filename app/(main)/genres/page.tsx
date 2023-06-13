@@ -32,6 +32,7 @@ const Genre = () => {
                 key={genres?.id!}
                 name={genres?.name!}
                 image={genres?.image_background!}
+                listSlug={genres?.slug!}
               />
             ))}
           </div>

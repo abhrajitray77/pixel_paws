@@ -1,23 +1,17 @@
 import { get, ResponseSchema } from './api';
 
 export type GameDataType = {
-  id?: number;
-  name: string;
-  slug: string;
-  description: string;
-  games_count: number;
-  image_background: string;
   count: number;
-  next: string;
-  previous: string;
+  next: string | null;
+  previous: string | null;
   results: {
-    id?: number;
+    id: number;
     name: string;
     slug: string;
-    description: string;
-    games_count: number;
+    games_count?: number;
     image_background: string;
-  };
+    description?: string; 
+  }[];
 };
 
 

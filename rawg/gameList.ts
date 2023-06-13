@@ -13,20 +13,20 @@ interface Params {
 const links = [
   {
     name: 'most popular',
-    path: 'lists/popular?discover=true',
+    path: 'games/lists/popular?discover=true',
   },
   {
     name: 'new releases',
-    path: 'lists/main?',
+    path: 'games/lists/main?',
   },
   {
     name: 'genreGames',
-    path: `discover=true`,
+    path: `games?discover=true`,
   }
 ]
 
 function gameList(params?: Params): Promise<ResponseSchema<Game>> {
-  return get<ResponseSchema<Game>>(`games/${links[params?.pageIndex!].path}&page-size=${params?.pageSize}&ordering=${params?.ordering}&page=${params?.page}&genres=${params?.genreSlug}`);
+  return get<ResponseSchema<Game>>(`${links[params?.pageIndex!].path}&page-size=${params?.pageSize}&ordering=${params?.ordering}&page=${params?.page}&genres=${params?.genreSlug}`);
 }
 
 export { gameList };
