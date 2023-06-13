@@ -1,14 +1,22 @@
-"use client"
-import Grid from '@/components/Grid';
-import { Game } from '@/gameTypes';
-import { gameList } from '@/rawg';
-import React, { useEffect, useState } from 'react'
-import { PacmanLoader } from 'react-spinners';
+/* eslint-disable react-hooks/exhaustive-deps */
+"use client";
+import Grid from "@/components/Grid";
+import { Game } from "@/gameTypes";
+import { gameList } from "@/rawg";
+import React, { useEffect, useState } from "react";
+import { PacmanLoader } from "react-spinners";
+
 interface loadGamesOptions {
   pageNo: number;
 }
 
-const Mpop = () => {
+type GenrePageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+const GenrePage = ({params: {slug}}: GenrePageProps) => {
   const [games, setGames] = useState<Game[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [pageNo, setPageNo] = useState<number>(1);
@@ -18,10 +26,11 @@ const Mpop = () => {
     setLoading(true);
 
     const response = await gameList({
-      pageIndex: 0,
+      pageIndex: 2,
       page: pageNo,
+      ordering: "popularity",
       pageSize: 20,
-      ordering: "-added",
+      genreSlug: slug,
     });
     let { results } = response;
     //results.forEach((game) => (game.price = getPrice(game)));
@@ -45,12 +54,11 @@ const Mpop = () => {
         console.error("Error loading games:", error);
       }
     })();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNo]);
 
   return (
     <div className="space-y-4">
-      <h1 className="text-gray-300 text-3xl font-bold">Most Popular</h1>
+      <h1 className="text-gray-300 text-3xl font-bold">{slug}</h1>
       <div className="flex flex-col justify-center items-center">
         {games ? (
           games?.length > 19 ? (
@@ -85,4 +93,4 @@ const Mpop = () => {
   );
 };
 
-export default Mpop
+export default GenrePage;

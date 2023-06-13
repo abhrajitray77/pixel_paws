@@ -13,6 +13,7 @@ import { SidebarContext } from "@/utils/SidebarContext";
 import SeachBar from "./SeachBar";
 import Link from "next/link";
 import { BsGithub, BsLinkedin, BsTwitter } from "react-icons/bs";
+import { IoGameController } from "react-icons/io5";
 
 //TODO: add animated colour buttons on hover?
 
@@ -50,7 +51,11 @@ const Sidebar = () => {
             <FireIcon className="w-6 h-6" />
           </SideButton>
         </div>
-
+        <div className="">
+          <SideButton name="Genres" path="/genres">
+            <IoGameController className="w-6 h-6" />
+          </SideButton>
+        </div>
       </nav>
 
       {/* mobile nav  */}
@@ -89,10 +94,17 @@ const Sidebar = () => {
               <FireIcon className="w-6 h-6" />
             </SideButton>
           </div>
+          <div className="">
+            <SideButton name="Genres" path="/genres">
+              <IoGameController className="w-6 h-6" />
+            </SideButton>
+          </div>
         </div>
         <div className=" text-center flex flex-col justify-center items-center space-y-2 pt-20">
-          <div className="text-indigo-500 font-medium text-xs flex flex-col
-          items-center">
+          <div
+            className="text-indigo-500 font-medium text-xs flex flex-col
+          items-center"
+          >
             <h2>Built with </h2>
             <span>
               <HeartIcon className="w-2 h-2 text-red-500" />
@@ -112,7 +124,10 @@ const Sidebar = () => {
             duration-300 hover:scale-105 cursor-pointer"
               />
             </Link>
-            <Link href="https://www.linkedin.com/in/abhrajit-ray-b6a97721a/" target="_blank">
+            <Link
+              href="https://www.linkedin.com/in/abhrajit-ray-b6a97721a/"
+              target="_blank"
+            >
               <BsLinkedin
                 className="w-6 h-6 text-gray-600 hover:text-blue-500 transition
             duration-300 hover:scale-105 cursor-pointer"
@@ -127,8 +142,12 @@ const Sidebar = () => {
         className="absolute md:flex flex-col pt-10 hidden font-bold
         items-center bottom-10 left-10 group "
       >
-        <h1 className="text-2xl text-gray-500 group-hover:text-gray-400
-        transition-all duration-300">PixelPaws</h1>
+        <h1
+          className="text-2xl text-gray-500 group-hover:text-gray-400
+        transition-all duration-300"
+        >
+          PixelPaws
+        </h1>
         <div className="text-xs text-gray-600 flex space-x-1">
           <Link href="https://rawg.io/" target="_blank">
             <h1
@@ -150,8 +169,10 @@ const Sidebar = () => {
         </div>
         {/*socials */}
         <div className=" text-center space-y-2 mt-2">
-          <div className="text-indigo-500 text-xs flex flex-col
-          items-center">
+          <div
+            className="text-indigo-500 text-xs flex flex-col
+          items-center"
+          >
             <h2>Built with </h2>
             <span>
               <HeartIcon className="w-2 h-2 text-red-500" />
@@ -171,7 +192,10 @@ const Sidebar = () => {
             duration-300 hover:scale-105 cursor-pointer"
               />
             </Link>
-            <Link href="https://www.linkedin.com/in/abhrajit-ray-b6a97721a/" target="_blank">
+            <Link
+              href="https://www.linkedin.com/in/abhrajit-ray-b6a97721a/"
+              target="_blank"
+            >
               <BsLinkedin
                 className="w-6 h-6 text-gray-600 hover:text-blue-500 transition
             duration-300 hover:scale-105 cursor-pointer"
