@@ -15,7 +15,7 @@ export default function MainLayout({
 }) {
   const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
-
+//logout fallback
   useEffect(() => {
     getSessionData()
       .then((data) => {
@@ -29,6 +29,7 @@ export default function MainLayout({
       .catch((error) => {
         console.log(error);
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

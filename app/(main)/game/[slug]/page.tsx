@@ -3,11 +3,11 @@ import Banner from "@/components/game/Banner";
 import Info from "@/components/game/Info";
 import { Game } from "@/gameTypes";
 import { gameDetails, gameScreenshots } from "@/rawg";
-import { ResponseSchema } from "@/rawg/api";
 import { Screenshot } from "@/rawg/gameScreenshots";
 import Image from "next/image";
 import React, { use, useEffect, useState } from "react";
 import { PacmanLoader } from "react-spinners";
+//game page
 
 type GamePageProps = {
   params: {

@@ -3,11 +3,9 @@
 import Grid from "@/components/Grid";
 import { Game } from "@/gameTypes";
 import { gameList } from "@/rawg";
-import getPrice from "@/rawg/getPrice";
 import React, { useEffect, useState } from "react";
-import { Toaster, toast } from "react-hot-toast";
 import { PacmanLoader } from "react-spinners";
-
+//new releases page
 interface loadGamesOptions {
   pageNo: number;
 }
@@ -28,8 +26,6 @@ const NewR = () => {
       pageSize: 20,
     });
     let { results } = response;
-    console.log(results);
-    //results.forEach((game) => (game.price = getPrice(game)));
     return results || [];
   };
 

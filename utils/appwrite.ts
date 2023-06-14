@@ -4,8 +4,6 @@ import {
   ID,
   Databases,
   Avatars,
-  Query,
-  Models,
 } from "appwrite";
 
 export const client = new Client()
