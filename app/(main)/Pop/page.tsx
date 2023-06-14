@@ -20,10 +20,11 @@ const Mpop = () => {
     const response = await gameList({
       pageIndex: 0,
       page: pageNo,
-      pageSize: 20,
-      ordering: "-added",
+      pageSize: 40,
+      ordering: "popularity",
     });
     let { results } = response;
+    console.log(results);
     //results.forEach((game) => (game.price = getPrice(game)));
     return results || [];
   };
@@ -53,7 +54,7 @@ const Mpop = () => {
       <h1 className="text-gray-300 text-3xl font-bold">Most Popular</h1>
       <div className="flex flex-col justify-center items-center">
         {games ? (
-          games?.length > 19 ? (
+          games?.length > 9 ? (
             <div className="pb-4">
               <Grid games={games} />
               {hasNextPage && (
