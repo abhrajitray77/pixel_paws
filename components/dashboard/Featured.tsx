@@ -3,6 +3,7 @@ import { Game } from "@/gameTypes";
 import { gameList } from "@/rawg";
 import React, { useEffect, useState } from "react";
 import CarouselCard from "./CarouselCard";
+import { PacmanLoader } from "react-spinners";
 // To do later, when doing ui/ux. use framer motion to animate the carousel
 
 const getSpotlightItems = (items: unknown[], length: number) => {
@@ -22,7 +23,11 @@ const Featured = () => {
   useEffect(() => {
     const loadGames = async () => {
       const pageNo = Math.floor(Math.random() * 3) + 1;
-      const response = await gameList({ pageIndex: 0, page: pageNo, pageSize: 30 });
+      const response = await gameList({
+        pageIndex: 0,
+        page: pageNo,
+        pageSize: 30,
+      });
       let { results } = response;
       results = results.filter((game) => game.metacritic > 40);
       return results;
@@ -37,8 +42,10 @@ const Featured = () => {
 
   return (
     <div className="">
-      <h1 className="text-gray-100 text-xl md:text-3xl font-bold
-      ">
+      <h1
+        className="text-gray-100 text-xl md:text-3xl font-bold
+      "
+      >
         Featured
       </h1>
       {games ? (
@@ -66,7 +73,9 @@ const Featured = () => {
           <p className="text-gray-100">No games found</p>
         )
       ) : (
-        <p className="text-gray-100">Loading...</p>
+        <div className="flex justify-center items-center">
+          <PacmanLoader color="#ffa600" size={20} loading={true} />
+        </div>
       )}
     </div>
   );

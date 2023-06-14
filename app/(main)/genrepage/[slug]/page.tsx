@@ -3,6 +3,7 @@
 import Grid from "@/components/Grid";
 import { Game } from "@/gameTypes";
 import { gameList } from "@/rawg";
+import { genreGames } from "@/rawg/genreGames";
 import React, { useEffect, useState } from "react";
 import { PacmanLoader } from "react-spinners";
 
@@ -25,8 +26,7 @@ const GenrePage = ({params: {slug}}: GenrePageProps) => {
   const loadGames = async ({ pageNo }: loadGamesOptions) => {
     setLoading(true);
 
-    const response = await gameList({
-      pageIndex: 2,
+    const response = await genreGames({
       page: pageNo,
       ordering: "popularity",
       pageSize: 20,

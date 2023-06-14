@@ -28,6 +28,7 @@ const NewR = () => {
       pageSize: 20,
     });
     let { results } = response;
+    console.log(results);
     //results.forEach((game) => (game.price = getPrice(game)));
     return results || [];
   };
@@ -56,7 +57,7 @@ const NewR = () => {
       <h1 className="text-gray-300 text-3xl font-bold">New Releases</h1>
       <div className="flex flex-col justify-center items-center">
         {games ? (
-          games?.length > 19 ? (
+          games?.length > 9 ? (
             <div className="pb-4">
               <Grid games={games} />
               {hasNextPage && (
