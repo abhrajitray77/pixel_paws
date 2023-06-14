@@ -37,7 +37,6 @@ const GameCard = ({ game }: GameCardProps) => {
         }}
       >
         <Image
-          unoptimized
           src={background_image ? background_image : "https://via.placeholder.com/800x400?text=Placeholder+Image"}
           alt={name}
           width={800}
