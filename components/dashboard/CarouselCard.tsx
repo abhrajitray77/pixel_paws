@@ -11,15 +11,15 @@ type CarouselCardProps = {
 const CarouselCard = ({ game }: CarouselCardProps) => {
   const { slug, id, name, released, background_image, platforms } = game;
 
-  const releasedDate = new Date(released).toLocaleDateString();
-  const platformList = platforms
+  const releasedDate = new Date(released).getFullYear();
+/*   const platformList = platforms
     .map((platform) => platform.platform.name)
-    .join(", ");
+    .join(", "); */
   const router = useRouter();
 
   return (
     <div
-      className="block rounded-3xl h-max cursor-pointer 
+      className="block rounded-3xl h-max
       hover:scale-105 transition-all duration-300 ease-in-out
       "
       style={{
@@ -29,7 +29,7 @@ const CarouselCard = ({ game }: CarouselCardProps) => {
       }}
     >
       <div
-        className="flex "
+        className="flex cursor-pointer "
         onClick={() => {
           router.push(`/game/${slug}`);
         }}
@@ -46,7 +46,7 @@ const CarouselCard = ({ game }: CarouselCardProps) => {
       </div>
       <div
         className="px-4 py-2 space-y-1 flex justify-between rounded-b-3xl
-       backdrop-blur-sm backdrop-brightness-50 "
+       backdrop-blur-sm backdrop-brightness-50 cursor-pointer"
       >
         <div
           className="text-sm font-medium text-gray-200 space-y-2"

@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useState, ReactNode } from "react";
-
+//sidebar context provider for logo click on small screens
 interface SidebarContextProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;

@@ -21,7 +21,7 @@ const GameCard = ({ game }: GameCardProps) => {
 
   return (
     <div
-      className="block rounded-3xl h-max cursor-pointer 
+      className="block rounded-3xl h-max 
       hover:scale-105 transition-all duration-300 ease-in-out
       "
       style={{
@@ -31,7 +31,7 @@ const GameCard = ({ game }: GameCardProps) => {
       }}
     >
       <div
-        className="flex "
+        className="flex cursor-pointer"
         onClick={() => {
           router.push(`/game/${slug}`);
         }}
@@ -60,7 +60,7 @@ const GameCard = ({ game }: GameCardProps) => {
         </div>
 
         <div
-          className="space-y-1 flex justify-between"
+          className="space-y-1 flex justify-between cursor-pointer"
           onClick={() => {
             router.push(`/game/${slug}`);
           }}

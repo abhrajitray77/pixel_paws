@@ -1,4 +1,4 @@
-
+//dashboard page
 import Featured from "@/components/dashboard/Featured";
 import Upcoming from "@/components/dashboard/Upcoming";
 function Home() {

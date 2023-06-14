@@ -1,6 +1,5 @@
 "use client";
 import Grid from "@/components/Grid";
-
 import { Game } from "@/gameTypes";
 import { gameDetails } from "@/rawg";
 import { GameAddedContext } from "@/utils/GameAddedContext";
@@ -11,7 +10,6 @@ import { PacmanLoader } from "react-spinners";
 
 const Wish = () => {
   const [games, setGames] = useState<Game[] | null>(null);
-  const [loading, setLoading] = useState(true); //TO DO: add loading animation react spinner
   const { gameAdded } = useContext(GameAddedContext);
 
   //function to load games
@@ -38,7 +36,7 @@ const Wish = () => {
         });
       });
     };
-    //TO-DO: temporary fix for reload userID undefined issue
+
     setTimeout(() => {
       getGameIds();
     }, 1000);

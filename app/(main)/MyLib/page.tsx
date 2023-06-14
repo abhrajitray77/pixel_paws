@@ -11,7 +11,6 @@ import { PacmanLoader } from "react-spinners";
 
 const MyLib = () => {
   const [games, setGames] = useState<Game[] | null>(null);
-  const [loading, setLoading] = useState(true); //TO DO: add loading animation react spinner
   const { gameAdded } = useContext(GameAddedContext);
 
 
@@ -39,7 +38,7 @@ const MyLib = () => {
         });
       });
     };
-    //TO-DO: temporary fix for reload userID undefined issue
+
     setTimeout(() => {
       getGameIds();
     }, 1000);

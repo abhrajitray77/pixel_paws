@@ -2,15 +2,15 @@
 "use client";
 import Grid from "@/components/Grid";
 import { Game } from "@/gameTypes";
-import { gameList } from "@/rawg";
 import { genreGames } from "@/rawg/genreGames";
+import { GameDataType, genreList } from "@/rawg/genreList";
 import React, { useEffect, useState } from "react";
 import { PacmanLoader } from "react-spinners";
 
 interface loadGamesOptions {
   pageNo: number;
 }
-
+//target page
 type GenrePageProps = {
   params: {
     slug: string;
@@ -19,10 +19,25 @@ type GenrePageProps = {
 
 const GenrePage = ({params: {slug}}: GenrePageProps) => {
   const [games, setGames] = useState<Game[] | null>(null);
+  const [genre, setGenre] = useState<GameDataType | null>(null);
   const [loading, setLoading] = useState(false);
   const [pageNo, setPageNo] = useState<number>(1);
   const [hasNextPage, setHasNextPage] = useState(true);
-
+//for genre name
+  const loadGenre = async () => {
+    setLoading(true);
+    const response = await genreList();
+    let { results } = response;
+    //filtering the results to get the genre with the slug
+    const data = results.reduce((acc: GameDataType | null, genre: GameDataType) => {
+      if (genre.slug === slug) {
+        acc = genre;
+      }
+      return acc;
+    }, null);
+    return data;
+  };
+//for loading of games 
   const loadGames = async ({ pageNo }: loadGamesOptions) => {
     setLoading(true);
 
@@ -36,11 +51,11 @@ const GenrePage = ({params: {slug}}: GenrePageProps) => {
     //results.forEach((game) => (game.price = getPrice(game)));
     return results || [];
   };
-
+//setting the page number to the next page
   const handleFetchNextPage = async () => {
     setPageNo(pageNo + 1);
   };
-
+//for loading of games belonging to the genre
   useEffect(() => {
     (async () => {
       try {
@@ -55,10 +70,28 @@ const GenrePage = ({params: {slug}}: GenrePageProps) => {
       }
     })();
   }, [pageNo]);
+//for loading of genre name
+  useEffect(() => {
+    (async () => {
+      try {
+        const newGenre = await loadGenre();
+        setGenre(newGenre);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error loading genres:", error);
+      }
+    })();
+  }, []);
 
   return (
     <div className="space-y-4">
-      <h1 className="text-gray-300 text-3xl font-bold">{slug}</h1>
+      { genre ? (
+      <h1 className="text-gray-300 text-3xl font-bold">{genre?.name!}</h1>
+      ) : (
+      <div>
+        <PacmanLoader color="#ffa600" size={20} loading={loading} />
+      </div>
+      )}
       <div className="flex flex-col justify-center items-center">
         {games ? (
           games?.length > 19 ? (
