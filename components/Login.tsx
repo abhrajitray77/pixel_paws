@@ -55,11 +55,23 @@ const Login = () => {
           signupDetails.email,
           signupDetails.password,
           signupDetails.name
-        );
-        router.push("/dashboard");
+        ).then(() => {
         toast.success(
-          "Account created successfully! Login with your credentials."
-        );
+          "Account created successfully!"
+        )}).then(() => {
+          account.createEmailSession(
+          signupDetails.email,
+          signupDetails.password
+        ).then(() => {
+          toast.success("Logged in via email!");
+          router.push("/dashboard");
+        }).catch((error) => {
+          console.error("Error logging in:", error);
+        });
+      }).catch((error) => {
+        console.error("Error creating account:", error);
+      });
+
       } else {
         // login
         await account.createEmailSession(
