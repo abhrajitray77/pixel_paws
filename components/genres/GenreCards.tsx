@@ -20,7 +20,7 @@ const GenreCards = ({
 
   return (
     <div className="flex flex-col justify-center items-center
-    rounded-full w-40 h-40 md:w-48 md:h-48 lg:w-52 lg:h-52 cursor-pointer"
+    rounded-full w-40 h-40 md:w-42 md:h-42 lg:w-52 lg:h-52 cursor-pointer"
       style={{
         backgroundImage: `url(${image ? image : "../../public/imgs/imgPlaceholder.jpg"})`,
         backgroundSize: "cover",

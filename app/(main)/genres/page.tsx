@@ -23,7 +23,7 @@ const Genre = () => {
         setGenre(newGenre || []);
         setLoading(false);
       } catch (error) {
-        console.error("Error loading games:", error);
+        console.error("Error loading genres:", error);
       }
     })();
   }, []);

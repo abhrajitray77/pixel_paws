@@ -1,4 +1,4 @@
-//types for the game data
+//types for the game object
 
 type Game = {
     id: number,

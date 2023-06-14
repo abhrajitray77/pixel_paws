@@ -15,7 +15,7 @@ const SideButton = ({ name, children, path }: SideButtonProps) => {
         <button
           className="text-indigo-200 hover:text-indigo-300 px-4 py-2
         flex space-x-4 transition-all duration-300 
-        ease-in-out hover:scale-105 text-sm items-center font-semibold"
+        hover:scale-105 text-sm items-center font-semibold"
         >
           {children}
           <h2 className="text-gray-400 hover:text-gray-200

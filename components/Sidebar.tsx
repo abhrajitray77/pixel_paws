@@ -42,7 +42,7 @@ const Sidebar = () => {
           </SideButton>
         </div>
         <div className="">
-          <SideButton name="New Releases" path="/New">
+          <SideButton name="New and Upcoming" path="/New">
             <SparklesIcon className="w-6 h-6" />
           </SideButton>
         </div>
@@ -85,7 +85,7 @@ const Sidebar = () => {
             </SideButton>
           </div>
           <div className="">
-            <SideButton name="New Releases" path="/New">
+            <SideButton name="New and Upcoming" path="/New">
               <SparklesIcon className="w-6 h-6" />
             </SideButton>
           </div>
