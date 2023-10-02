@@ -1,34 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PixelPaws: All your favourite games in one place!
 
-## Getting Started
+## Description
+PixelPaws is a game discovery platform that makes it easier for you to find the games that you want to play and also keep track of the ones you're done playing.
+It uses Appwrite Cloud for Authentication and Databases, and the RAWG API for fetching the game data.
+You can search for any game, filter by popularity, new releases, and genre, add to your library and save games to your wishlist.
 
-First, run the development server:
+![IMG_0336](https://github.com/abhrajitray77/pixel_paws/assets/67530432/7765de50-bd39-4f30-8240-789185be1634)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Complete email Authentication service along with Discord OAuth built on Appwrite's auth.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![auth1](https://github.com/abhrajitray77/pixel_paws/assets/67530432/03db831f-59f7-4b20-838f-07f8021c2ed2)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Fully responsive layout across all devices:
+![responsive](https://github.com/abhrajitray77/pixel_paws/assets/67530432/9f1df680-bd4d-4308-84a1-2041be06e122)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Tech Stack:
+Next.js, Typescript, Tailwind CSS, Appwrite, RAWG API
