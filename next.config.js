@@ -4,8 +4,7 @@ const nextConfig = {
     RAWG_API_KEY: process.env.RAWG_API_KEY,
   },
   images: {
-    domains: ["cdn.discordapp.com", "media.rawg.io"],
-    unoptimized: true,
+    domains: ["cdn.discordapp.com", "media.rawg.io"]
   },
 };
 

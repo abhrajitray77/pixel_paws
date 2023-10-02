@@ -1,0 +1,7 @@
+version: "4.20"
+services:
+  app:
+    build: ./
+    container_name: myDockerApp
+    ports:
+      - "3000:3000"
