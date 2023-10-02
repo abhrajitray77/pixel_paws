@@ -43,7 +43,7 @@ const SeachBar = () => {
         searchTimeout = setTimeout(() => {
           delayedSearch(searchTerm);
           searchTimeout = null;
-        }, 1000); // Adjust the delay duration as needed (e.g., 500ms)
+        }, 300); // Adjust the delay duration as needed (e.g., 500ms)
       }
     };
 
