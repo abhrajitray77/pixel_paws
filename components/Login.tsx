@@ -32,6 +32,7 @@ const Login = () => {
         "discord",
         "https://pixelpaws.vercel.app/dashboard",
         "https://pixelpaws.vercel.app"
+        )
     } catch (error) {
       console.error("OAuth login error:", error);
     }
