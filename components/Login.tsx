@@ -30,7 +30,7 @@ const Login = () => {
     try {
       account.createOAuth2Session(
         "discord",
-        "pixelpaws.vercel.app/dashboard"
+        "www.pixelpaws.vercel.app/"
       )
     } catch (error) {
       console.error("OAuth login error:", error);
